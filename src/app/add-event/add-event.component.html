@@ -1,0 +1,23 @@
+<!--<p>
+  add-event works!
+</p>-->
+
+<form>
+  Event Name:
+  <input type="text" name="event_name" [(ngModel)]="event_name" id="">
+  <br> Event Description:
+  <textarea name="event_des" id="" [(ngModel)]="event_des" cols="30" rows="10"></textarea>
+  <br> Event Image:
+  <input type="file" name="event_pic" [(ngModel)]="event_pic" (change)="onFileSelected($event)" id="">
+  <br> Event Starting Time:
+  <input type="time" name="event_s_time" [(ngModel)]="event_s_time" id="">
+  <br> Event Ending Time:
+  <input type="time" name="event_e_time" [(ngModel)]="event_e_time" id="">
+  <br> Event Date:
+  <input type="date" name="event_date" [(ngModel)]="event_date" id="">
+  <br> Event Location:
+  <textarea name="event_loc" [(ngModel)]="event_loc" id="" cols="30" rows="10"></textarea>
+  <br>
+
+  <input type="button" (click)="addEvents()" value="Add">
+</form>
