@@ -37,8 +37,6 @@ export class UpdateEventComponent implements OnInit {
 
   }
 
-
-
   ngOnInit() {
 
     this._subscription = this.activatedRoute.params.subscribe(

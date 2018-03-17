@@ -1,23 +1,67 @@
 <!--<p>
   add-event works!
 </p>-->
+<app-header></app-header>
+<div class="content-page">
+  <div class="content">
+    <div class="page-header-title">
+      <h4 class="page-title">Create Event</h4>
+    </div>
+    <!--<form>
+        Event Name:
+        <input type="text" name="event_name" [(ngModel)]="event_name" id="">
+        <br> Event Description:
+        <textarea name="event_des"  [(ngModel)]="event_des" cols="30" rows="10"></textarea>
+        <br> Event Image:
+        <input type="file" name="event_pic" [(ngModel)]="event_pic" (change)="onFileSelected($event)" id="">
+        <br> Event Starting Time:
+        <input type="time" name="event_s_time" [(ngModel)]="event_s_time" id="">
+        <br> Event Ending Time:
+        <input type="time" name="event_e_time" [(ngModel)]="event_e_time" id="">
+        <br> Event Date:
+        <input type="date" name="event_date" [(ngModel)]="event_date" id="">
+        <br> Event Location:
+        <textarea name="event_loc" [(ngModel)]="event_loc" id="" cols="30" rows="10"></textarea>
+        <br>
+        <input type="button" (click)="addEvents()" value="Add">
+      </form>-->
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Event Name" name="event_name" [(ngModel)]="event_name">
+      </mat-form-field>
 
-<form>
-  Event Name:
-  <input type="text" name="event_name" [(ngModel)]="event_name" id="">
-  <br> Event Description:
-  <textarea name="event_des" id="" [(ngModel)]="event_des" cols="30" rows="10"></textarea>
-  <br> Event Image:
-  <input type="file" name="event_pic" [(ngModel)]="event_pic" (change)="onFileSelected($event)" id="">
-  <br> Event Starting Time:
-  <input type="time" name="event_s_time" [(ngModel)]="event_s_time" id="">
-  <br> Event Ending Time:
-  <input type="time" name="event_e_time" [(ngModel)]="event_e_time" id="">
-  <br> Event Date:
-  <input type="date" name="event_date" [(ngModel)]="event_date" id="">
-  <br> Event Location:
-  <textarea name="event_loc" [(ngModel)]="event_loc" id="" cols="30" rows="10"></textarea>
-  <br>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Event Description" name="event_des" [(ngModel)]="event_des" cols="30" rows="3"></textarea>
+      </mat-form-field>
 
-  <input type="button" (click)="addEvents()" value="Add">
-</form>
+      <label>Event Picture:</label>
+      <input type="file" name="event_pic" [(ngModel)]="event_pic" (change)="onFileSelected($event)" id="">
+
+      <mat-form-field class="example-full-width">
+        <label for="">Event Starting Time</label>
+        <input matInput type="time" name="event_s_time" [(ngModel)]="event_s_time">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <label for="">Event Ending Time</label>
+        <input matInput type="time" name="event_e_time" [(ngModel)]="event_e_time">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <label for="">Event Date:</label>
+        <input matInput type="date" name="event_date" [(ngModel)]="event_date">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Event Location" name="event_loc" [(ngModel)]="event_loc" cols="30" rows="3"></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="warn" (click)="addEvents()">Create Event
+        <mat-icon fontSet="fa" fontIcon="fa-check-circle"></mat-icon>
+      </button>
+
+    </form>
+
+    <footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>
+  </div>
+</div>

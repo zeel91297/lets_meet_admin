@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventsDbService } from '../providers/eventsDb/events-db.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-event',

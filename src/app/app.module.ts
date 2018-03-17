@@ -1,6 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, AfterViewInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
+// tslint:disable-next-line:max-line-length
+import {
+  MatButtonModule,
+  MatSortModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatExpansionModule,
+  MatListModule,
+  MatDatepickerModule,
+  MatNativeDateModule
+} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routing } from './app.routing';
 
@@ -26,7 +44,21 @@ import { UpdateEventComponent } from './update-event/update-event.component';
     BrowserModule,
     HttpClientModule,
     routing,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatSortModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [EventsDbService],
   bootstrap: [AppComponent]
