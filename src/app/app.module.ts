@@ -26,10 +26,20 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { HeaderComponent } from './header.component';
 
-import { EventsComponent } from './events/events.component';
 import { EventsDbService } from './providers/eventsDb/events-db.service';
+import { CommunityDbService } from './providers/communitiesDb/community-db.service';
+import { UsersDbService } from './providers/usersDb/users-db.service';
+import { PostsDbService } from './providers/postsDb/posts-db.service';
+import { FeedbackDbService } from './providers/feedbackDb/feedback-db.service';
+
+import { EventsComponent } from './events/events.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
+import { CommunitiesComponent } from './communities/communities.component';
+import { UsersComponent } from './users/users.component';
+import { PostsComponent } from './posts/posts.component';
+import { FeedbacksComponent } from './feedbacks/feedbacks.component';
+
 
 
 @NgModule({
@@ -38,7 +48,11 @@ import { UpdateEventComponent } from './update-event/update-event.component';
     EventsComponent,
     HeaderComponent,
     AddEventComponent,
-    UpdateEventComponent
+    UpdateEventComponent,
+    CommunitiesComponent,
+    UsersComponent,
+    PostsComponent,
+    FeedbacksComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +74,12 @@ import { UpdateEventComponent } from './update-event/update-event.component';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [EventsDbService],
+  providers: [EventsDbService,
+    CommunityDbService,
+    UsersDbService,
+    PostsDbService,
+    FeedbackDbService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
