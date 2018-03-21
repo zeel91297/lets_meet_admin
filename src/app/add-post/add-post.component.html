@@ -1,0 +1,43 @@
+<!-- <p>
+  add-post works!
+</p> -->
+
+<app-header></app-header>
+<div class="content-page">
+  <div class="content page-content-wrapper">
+    <h1 class="display-1" style="text-align:center">Create Post</h1>
+    <div align="left" style="padding:15px">
+      <form class="example-form" (ngSubmit)="onAddPost(postForm)" #postForm="ngForm">
+        <mat-form-field class="example-full-width">
+          <input matInput ngModel required placeholder="Post Title" name="post_title" #post_title="ngModel">
+          <mat-error *ngIf="post_title.hasError('required')">Please Enter Post Title</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput ngModel required placeholder="Post Description" name="post_des" #post_des="ngModel" cols="30" rows="3"></textarea>
+          <mat-error *ngIf="post_des.hasError('required')">Please Enter Post Description</mat-error>
+        </mat-form-field>
+
+        <!--<mat-form-field class="example-full-width">-->
+        <label>Community Picture:</label>
+        <input ngModel required type="file" name="comm_pic" #comm_pic="ngModel" (change)="onFileSelected($event)" id="">
+        <!--<mat-error *ngIf="event_pic.hasError('required')">Please Enter Event Picture</mat-error>-->
+
+        <mat-form-field>
+          <mat-select required placeholder="Select Community" name="community_id" [(ngModel)]="community_id" #c_id="ngModel">
+            <mat-option *ngFor="let item of arrCommu" [value]="item.comm_id">
+              {{ item.comm_name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="c_id.hasError('required')">Please Select a Community</mat-error>
+        </mat-form-field>
+
+        <button type="submit" mat-button mat-icon-button color="warn">Create Community
+          <mat-icon>done</mat-icon>
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>
+<footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>

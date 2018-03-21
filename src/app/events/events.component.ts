@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { MatTableDataSource, MatSort, MatPaginator, Sort } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 
-import { Events_Class } from '../shared/event_class';
+import { Event_User_class } from '../shared/event_user_class';
 import { EventsDbService } from '../providers/eventsDb/events-db.service';
 
 @Component({
@@ -16,32 +16,29 @@ import { EventsDbService } from '../providers/eventsDb/events-db.service';
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
 })
-export class EventsComponent implements OnInit, AfterViewInit {
+export class EventsComponent implements OnInit {
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-  displayedColumns = ['event_name', 'event_des', 'event_loc', 'fk_user_id', 'action'];
-  dataSource: MatTableDataSource<Events_Class>;
-  selection = new SelectionModel<Events_Class>(true, []);
+  displayedColumns = ['check', 'event_name', 'event_pic', 'event_loc', 'fk_user_id', 'action'];
+  dataSource: MatTableDataSource<Event_User_class>;
+  selection = new SelectionModel<Event_User_class>(true, []);
 
-  arrEvents: Events_Class[] = [];
+  arrEvents: Event_User_class[] = [];
   constructor(public _dataEvent: EventsDbService,
     public router: Router) { }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
   ngOnInit() {
     this._dataEvent.getAllEvents().subscribe(
-      (data: Events_Class[]) => {
+      (data: Event_User_class[]) => {
         this.arrEvents = data;
         console.log(data);
         this.dataSource = new MatTableDataSource(this.arrEvents);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       function (err) {
         alert(err);

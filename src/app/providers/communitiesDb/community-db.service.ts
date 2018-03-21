@@ -17,11 +17,15 @@ export class CommunityDbService {
     return this.http.get(this.url + id);
   }
 
-  addCommuniy(item: Community_Class) {
+  // addCommuniy(item: Community_Class) {
 
-    // tslint:disable-next-line:prefer-const
-    let body = JSON.stringify(item);
-    return this.http.post(this.url, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+  //   // tslint:disable-next-line:prefer-const
+  //   let body = JSON.stringify(item);
+  //   return this.http.post(this.url, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+  // }
+
+  addCommunity(fd: FormData) {
+    return this.http.post(this.url, fd);
   }
 
   deleteCommunity(item: Community_Class) {

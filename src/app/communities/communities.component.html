@@ -1,80 +1,75 @@
 <app-header></app-header>
 <div class="content-page">
-  <div class="content">
-    <div class="">
-      <div class="page-header-title">
-        <h4 class="page-title">Events</h4>
+  <div class="content page-content-wrapper">
+    <h1 class="display-1" style="text-align:center"> Create Event</h1>
+    <div class="example-container mat-elevation-z8">
+      <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
       </div>
-    </div>
-    <div class="page-content-wrapper ">
-      <div class="example-container mat-elevation-z8">
-        <div class="example-header">
-          <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-          </mat-form-field>
-        </div>
-        <mat-table #table [dataSource]="dataSource" matSort>
-          <ng-container matColumnDef="select">
-            <mat-header-cell *matHeaderCellDef>
-              <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
-              </mat-checkbox>
-            </mat-header-cell>
-            <mat-cell *matCellDef="let row">
-              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
-              </mat-checkbox>
-            </mat-cell>
-          </ng-container>
-          <!--- Note that these columns can be defined in any order.
+      <mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+        <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
-          <!-- Position Column -->
-          <ng-container matColumnDef="comm_name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Community Name </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.comm_name}} </mat-cell>
-          </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="comm_name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Community Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.comm_name}} </mat-cell>
+        </ng-container>
 
-          <!-- Name Column -->
-          <ng-container matColumnDef="comm_pic">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Community Image </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <!--{{element.comm_pic}}-->
-              <img height="100" width="100" src="http://localhost:3000/images/communities/{{element.comm_pic}}" alt="">
-            </mat-cell>
-          </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="comm_pic">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Community Image </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <!--{{element.comm_pic}}-->
+            <img src="http://localhost:3000/images/communities/{{element.comm_pic}}" height="150" width="150" alt="..." class="img-thumbnail">
+          </mat-cell>
+        </ng-container>
 
-          <!-- Weight Column -->
-          <ng-container matColumnDef="comm_date">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Community Created Date </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.comm_date | date}} </mat-cell>
-          </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="comm_date">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Community Created Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.comm_date | date}} </mat-cell>
+        </ng-container>
 
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="created_by">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Community Created By </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.created_by}} </mat-cell>
-          </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="created_by">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Community Created By </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.created_by}} </mat-cell>
+        </ng-container>
 
-          <ng-container matColumnDef="action">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <button (click)="deleteCommunity(element)" color="warn" mat-icon-button>
-                <mat-icon>delete</mat-icon>
-              </button>
-              <button (click)="updateCommunity(element)" color="primary" mat-icon-button>
-                <mat-icon>create</mat-icon>
-              </button>
-            </mat-cell>
-          </ng-container>
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button (click)="deleteCommunity(element)" color="warn" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button (click)="updateCommunity(element)" color="primary" mat-icon-button>
+              <mat-icon>create</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
-        </mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
+      </mat-table>
 
-        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
-        </mat-paginator>
+      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+      </mat-paginator>
 
-      </div>
     </div>
   </div>
-  <footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>
+  <!--</div>-->
 </div>
+<footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>

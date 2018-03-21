@@ -28,10 +28,14 @@ export class EventsDbService {
     return this.http.post(this.url, fd);
   }
 
-  editEvent(evn: Events_Class) {
+  /*editEvent(evn: Events_Class) {
     // tslint:disable-next-line:prefer-const
     let body = JSON.stringify(evn);
     return this.http.put(this.url + evn.event_id, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+  }*/
+
+  editEvent(id, fd: FormData) {
+    return this.http.put(this.url + id, fd);
   }
 
   deleteEvent(evn: Events_Class) {

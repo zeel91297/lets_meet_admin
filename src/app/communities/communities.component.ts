@@ -21,10 +21,10 @@ export class CommunitiesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
   displayedColumns = ['comm_name', 'comm_pic', 'comm_date', 'created_by', 'action'];
   dataSource: MatTableDataSource<Community_Class>;
-  selection = new SelectionModel<Community_Class>(true, []);
+  // selection = new SelectionModel<Community_Class>(true, []);
+  selection: SelectionModel<Community_Class>;
 
   arrCommu: Community_Class[] = [];
 
@@ -37,6 +37,9 @@ export class CommunitiesComponent implements OnInit {
         this.arrCommu = data;
         console.log(data);
         this.dataSource = new MatTableDataSource(this.arrCommu);
+        this.selection = new SelectionModel(true, []);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       },
       function (err) {
         alert(err);
@@ -68,7 +71,7 @@ export class CommunitiesComponent implements OnInit {
   }
 
   updateCommunity(item) {
-    this.router.navigate(['/updateEvent', item.event_id]);
+    this.router.navigate(['/updateCommunity', item.comm_id]);
   }
 
 

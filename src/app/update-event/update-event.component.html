@@ -1,23 +1,105 @@
 <!--<p>
-  update-event works!
+  add-event works!
 </p>-->
+<app-header></app-header>
+<div class="content-page">
+  <div class="content page-content-wrapper">
+    <h1 class="display-1" style="text-align:center">Create Event</h1>
+    <div align="left" style="padding:15px">
+      <form class="example-form" name="eform" (ngSubmit)="onEventUpdate(eventform)" #eventform="ngForm">
+        <mat-form-field class="example-full-width">
+          <input matInput ngModel required placeholder="Event Name" name="event_name" [(ngModel)]="event_name" #e_name="ngModel">
+          <mat-error *ngIf="e_name.hasError('required')">Please Enter Event Name</mat-error>
+        </mat-form-field>
 
-<form name="eventForm">
-  Event Name:
-  <input type="text" name="event_name" [(ngModel)]="event_name" id="">
-  <br> Event Description:
-  <textarea name="event_des" id="" [(ngModel)]="event_des" cols="30" rows="10"></textarea>
-  <br> Event Image:
-  <input type="file" name="event_pic" [(ngModel)]="event_pic" (change)="onFileSelected($event)" id="">
-  <br> Event Starting Time:
-  <input type="time" name="event_s_time" [(ngModel)]="event_s_time" id="">
-  <br> Event Ending Time:
-  <input type="time" name="event_e_time" [(ngModel)]="event_e_time" id="">
-  <br> Event Date:
-  <input type="date" name="event_date" [(ngModel)]="event_date" id="">
-  <br> Event Location:
-  <textarea name="event_loc" [(ngModel)]="event_loc" id="" cols="30" rows="10"></textarea>
-  <br>
+        <mat-form-field class="example-full-width">
+          <textarea matInput ngModel required placeholder="Event Description" name="event_des" [(ngModel)]="event_des" #e_des="ngModel"
+            cols="30" rows="3"></textarea>
+          <mat-error *ngIf="e_des.hasError('required')">Please Enter Event Description</mat-error>
+        </mat-form-field>
 
-  <input type="button" (click)="addEvents()" value="Add">
-</form>
+        <!--<mat-form-field class="example-full-width">-->
+
+        <label>Event Picture:</label>
+        <img src="http://localhost:3000/images/events/{{event_pic}}" height="150" width="150" alt="..." class="img-thumbnail">
+        <button mat-icon-button color="primary" name="btnImg">
+          <mat-icon (click)="getPicture()">mode edit</mat-icon>
+        </button>
+        <input required name="event_pic" type="file" style="visibility: hidden" #fileInput (change)="onFileSelected($event)">
+
+        <!--<mat-error *ngIf="event_pic.hasError('required')">Please Enter Event Picture</mat-error>-->
+
+
+        <mat-form-field class="example-full-width">
+          <label for="">Event Starting Time</label>
+          <input matInput ngModel required type="time" name="event_s_time" [(ngModel)]="event_s_time" #e_s_time="ngModel">
+          <mat-error *ngIf="e_s_time.hasError('required')">Please Enter Starting Time</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <label for="">Event Ending Time</label>
+          <input matInput ngModel type="time" name="event_e_time" [(ngModel)]="event_e_time" #e_e_time="ngModel">
+        </mat-form-field>
+
+        <!-- <mat-form-field class="example-full-width">
+          <label for="">Event Date:</label>
+          <input matInput ngModel required type="date"  name="event_date" [(ngModel)]="event_date" #e_date="ngModel">{{event_date | date:'dd-MM-yyyy'}}
+          <mat-error *ngIf="e_date.hasError('required')">Please Enter Event Date</mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field>
+          <input matInput ngModel [matDatepicker]="picker" placeholder="Choose a date" name="event_date" [(ngModel)]="event_date" #e_date="ngModel">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput ngModel required placeholder="Event Location" name="event_loc" [(ngModel)]="event_loc" #e_loc="ngModel"
+            cols="30" rows="3"></textarea>
+          <mat-error *ngIf="e_loc.hasError('required')">Please Enter Event Location</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Select Community" name="c_id" [(ngModel)]="community_id">
+            <mat-option *ngFor="let item of arrCommu" [value]="item.comm_id">
+              {{ item.comm_name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="warn">Update Event
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+  <!--</div>-->
+</div>
+<footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>
+
+
+
+<!-- <form name="eventForm">
+        Event Name:
+        <input type="text" name="event_name" [(ngModel)]="event_name" id="event_name">
+        <br> Event Description:
+        <textarea name="event_des" id="event_des" [(ngModel)]="event_des" cols="30" rows="10"></textarea>
+        <br> Event Image:
+        <input type="file" name="event_pic" [(ngModel)]="event_pic" (change)="onFileSelected($event)" id="event_pic">
+        <br> Event Starting Time:
+        <input type="time" name="event_s_time" [(ngModel)]="event_s_time" id="event_s_time">
+        <br> Event Ending Time:
+        <input type="time" name="event_e_time" [(ngModel)]="event_e_time" id="event_e_time">
+        <br> Event Date:
+        <input type="date" name="event_date" [(ngModel)]="event_date" id="event_date">
+        <br> Event Location:
+        <textarea name="event_loc" [(ngModel)]="event_loc" id="event_loc" cols="30" rows="10"></textarea>
+        <br>
+
+        <button type="submit">Update</button>
+      </form>
+    </div>
+    <footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>
+  </div>
+</div> -->

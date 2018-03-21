@@ -1,3 +1,73 @@
-<p>
-  posts works!
-</p>
+<app-header></app-header>
+<div class="content-page">
+  <div class="content page-content-wrapper">
+    <h1 class="display-1" style="text-align:center">Posts</h1>
+    <!--<div class="">
+      <div class="page-header-title">
+        <h4 class="page-title">Events</h4>
+      </div>-->
+
+    <!--<div class="page-content-wrapper ">-->
+    <div class="example-container mat-elevation-z8">
+      <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+      <mat-table #table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="check">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Check </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <input type="checkbox" (change)="ceckChange(element)" name="usercheck">
+          </mat-cell>
+        </ng-container>
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <ng-container matColumnDef="post_title">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Post Title </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.post_title}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="post_date">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Post Date </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.post_date | date}}
+            <!-- <img src="http://localhost:3000/images/events/{{element.event_pic}}" alt="" height="100" width="100">-->
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="post_fk_user_id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Posted By </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.post_fk_user_id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fk_comm_id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Community </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.fk_comm_id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button (click)="deletePost(element)" color="warn" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button (click)="updatePost(element)" color="primary" mat-icon-button>
+              <mat-icon>create</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+      </mat-paginator>
+
+    </div>
+    <!--</div>-->
+  </div>
+  <footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>

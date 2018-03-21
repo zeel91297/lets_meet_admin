@@ -31,13 +31,17 @@ import { CommunityDbService } from './providers/communitiesDb/community-db.servi
 import { UsersDbService } from './providers/usersDb/users-db.service';
 import { PostsDbService } from './providers/postsDb/posts-db.service';
 import { FeedbackDbService } from './providers/feedbackDb/feedback-db.service';
+import { RsvpDbService } from './providers/rsvpDb/rsvp-db.service';
 
 import { EventsComponent } from './events/events.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
 import { CommunitiesComponent } from './communities/communities.component';
+import { AddCommunityComponent } from './add-community/add-community.component';
+import { UpdateCommunityComponent } from './update-community/update-community.component';
 import { UsersComponent } from './users/users.component';
 import { PostsComponent } from './posts/posts.component';
+import { AddPostComponent } from './add-post/add-post.component';
 import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
 
@@ -52,7 +56,10 @@ import { FeedbacksComponent } from './feedbacks/feedbacks.component';
     CommunitiesComponent,
     UsersComponent,
     PostsComponent,
-    FeedbacksComponent
+    FeedbacksComponent,
+    UpdateCommunityComponent,
+    AddCommunityComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +85,8 @@ import { FeedbacksComponent } from './feedbacks/feedbacks.component';
     CommunityDbService,
     UsersDbService,
     PostsDbService,
-    FeedbackDbService
+    FeedbackDbService,
+    RsvpDbService
   ],
   bootstrap: [AppComponent]
 })

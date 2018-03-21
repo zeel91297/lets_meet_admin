@@ -1,3 +1,77 @@
-<p>
+<!-- <p>
   users works!
-</p>
+</p> -->
+<app-header></app-header>
+<div class="content-page">
+  <div class="content page-content-wrapper">
+    <h1 class="display-1" style="text-align:center">Users</h1>
+    <!--<div class="">
+      <div class="page-header-title">
+        <h4 class="page-title">Events</h4>
+      </div>-->
+
+    <!--<div class="page-content-wrapper ">-->
+    <div class="example-container mat-elevation-z8">
+      <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+      <mat-table #table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="check">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Check </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <input type="checkbox" (change)="ceckChange(element)" name="usercheck">
+          </mat-cell>
+        </ng-container>
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <ng-container matColumnDef="user_id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Email ID </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.user_id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user_name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.user_name}}
+            <!-- <img src="http://localhost:3000/images/events/{{element.event_pic}}" alt="" height="100" width="100">-->
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user_pic">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Profile Picture </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <img src="http://localhost:3000/images/users/{{element.user_pic}}" height="150" width="150" alt="..." class="img-thumbnail"> </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button (click)="deletePost(element)" color="warn" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button (click)="updatePost(element)" color="primary" mat-icon-button>
+              <mat-icon>create</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+      </mat-paginator>
+
+    </div>
+    <!--</div>-->
+  </div>
+  <footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>
