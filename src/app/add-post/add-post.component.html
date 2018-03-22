@@ -18,10 +18,8 @@
           <mat-error *ngIf="post_des.hasError('required')">Please Enter Post Description</mat-error>
         </mat-form-field>
 
-        <!--<mat-form-field class="example-full-width">-->
-        <label>Community Picture:</label>
-        <input ngModel required type="file" name="comm_pic" #comm_pic="ngModel" (change)="onFileSelected($event)" id="">
-        <!--<mat-error *ngIf="event_pic.hasError('required')">Please Enter Event Picture</mat-error>-->
+        <label>Event Picture:</label>
+        <input ngModel required type="file" name="post_pic" #post_pic="ngModel" (change)="onFileSelected($event)" id="">
 
         <mat-form-field>
           <mat-select required placeholder="Select Community" name="community_id" [(ngModel)]="community_id" #c_id="ngModel">
@@ -32,7 +30,7 @@
           <mat-error *ngIf="c_id.hasError('required')">Please Select a Community</mat-error>
         </mat-form-field>
 
-        <button type="submit" mat-button mat-icon-button color="warn">Create Community
+        <button type="submit" mat-button mat-raised-button color="warn">Create Post
           <mat-icon>done</mat-icon>
         </button>
 

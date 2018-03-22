@@ -1,0 +1,37 @@
+<!-- <p>
+  update-post works!
+</p> -->
+<app-header></app-header>
+<div class="content-page">
+  <div class="content page-content-wrapper">
+    <h1 class="display-1" style="text-align:center">Edit Post</h1>
+    <div align="left" style="padding:15px">
+      <form class="example-form" name="form11" (ngSubmit)="onUpdatePost(postForm)" #postForm="ngForm">
+        <mat-form-field class="example-full-width">
+          <input matInput required placeholder="Post Title" name="post_title" #p_title="ngModel" [(ngModel)]="post_title">
+          <mat-error *ngIf="p_title.hasError('required')">Please Enter Post Title</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput required placeholder="Post Description" name="post_des" #p_des="ngModel" [(ngModel)]="post_des" cols="30"
+            rows="3"></textarea>
+          <mat-error *ngIf="p_des.hasError('required')">Please Enter Post Description</mat-error>
+        </mat-form-field>
+
+        <label>Event Picture:</label>
+        <img src="http://localhost:3000/images/posts/{{post_pic}}" height="150" width="150" alt="Not Available!" class="img-thumbnail">
+        <button mat-icon-button color="primary" name="btnImg">
+          <mat-icon (click)="getPicture()">mode edit</mat-icon>
+        </button>
+        <input required type="file" name="pst_pic"  style="visibility: hidden" #fileInput (change)="onFileSelected($event)"
+          id="">
+
+        <button type="submit" mat-button mat-raised-button color="warn">Update Post
+          <mat-icon>done</mat-icon>
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>
+<footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>

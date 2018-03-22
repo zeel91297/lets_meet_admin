@@ -70,7 +70,7 @@ export class PostsComponent implements OnInit {
   }
 
   updatePost(item) {
-
+    this.router.navigate(['/updatePost', item.post_id]);
   }
 }
 

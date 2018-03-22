@@ -42,6 +42,7 @@ import { UpdateCommunityComponent } from './update-community/update-community.co
 import { UsersComponent } from './users/users.component';
 import { PostsComponent } from './posts/posts.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { UpdatePostComponent } from './update-post/update-post.component';
 import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
 
@@ -59,7 +60,8 @@ import { FeedbacksComponent } from './feedbacks/feedbacks.component';
     FeedbacksComponent,
     UpdateCommunityComponent,
     AddCommunityComponent,
-    AddPostComponent
+    AddPostComponent,
+    UpdatePostComponent
   ],
   imports: [
     BrowserModule,

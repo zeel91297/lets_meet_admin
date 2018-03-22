@@ -12,6 +12,7 @@ import { UsersComponent } from './users/users.component';
 
 import { PostsComponent } from './posts/posts.component';
 import { AddPostComponent } from './add-post/add-post.component';
+import { UpdatePostComponent } from './update-post/update-post.component';
 
 import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
@@ -29,6 +30,7 @@ const arr: Routes = [
 
     { path: 'posts', component: PostsComponent },
     { path: 'addPost', component: AddPostComponent },
+    { path: 'updatePost/:id', component: UpdatePostComponent },
 
     { path: 'feedbacks', component: FeedbacksComponent }
 ];

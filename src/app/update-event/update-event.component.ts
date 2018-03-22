@@ -102,37 +102,44 @@ export class UpdateEventComponent implements OnInit {
   }
 
   onEventUpdate(eventform) {
+
+    if (this.selectedFile == null) {
+
+
+    } else {
+      const fd = new FormData();
+      fd.append('event_id', this.event_id);
+      fd.append('event_name', eventform.value.event_name);
+      fd.append('event_des', eventform.value.event_des);
+      fd.append('image', this.selectedFile, this.selectedFile.name);
+      fd.append('event_s_time', eventform.value.event_s_time);
+      fd.append('event_e_time', eventform.value.event_e_time);
+
+      // this.e_date = this.e_date.substring(0, this.e_date.indexOf('T'));
+      fd.append('event_date', this.event_date);
+      fd.append('event_loc', eventform.value.event_loc);
+      fd.append('fk_comm_id', this.community_id);
+
+      // console.log(this.e_date.substring(0, this.e_date.indexOf('T')));
+
+      this._dataEvent.editEvent(this.event_id, fd).subscribe(
+        (data: any) => {
+          console.log(data);
+        },
+        function (err) {
+          alert(err);
+        },
+        function () {
+
+        }
+      );
+    }
     /*  this.event_name = eventform.value.event_name;
       this.event_des = eventform.value.event_des;
       this.event_s_time = eventform.value.event_s_time;
       this.event_e_time = eventform.value.event_e_time;
       this.event_date = eventform.value.event_date;
       this.event_loc = eventform.value.event_loc;*/
-    const fd = new FormData();
-    fd.append('event_id', this.event_id);
-    fd.append('event_name', eventform.value.event_name);
-    fd.append('event_des', eventform.value.event_des);
-    fd.append('image', this.selectedFile, this.selectedFile.name);
-    fd.append('event_s_time', eventform.value.event_s_time);
-    fd.append('event_e_time', eventform.value.event_e_time);
 
-    // this.e_date = this.e_date.substring(0, this.e_date.indexOf('T'));
-    fd.append('event_date', this.event_date);
-    fd.append('event_loc', eventform.value.event_loc);
-    fd.append('fk_comm_id', this.community_id);
-
-    // console.log(this.e_date.substring(0, this.e_date.indexOf('T')));
-
-    this._dataEvent.editEvent(this.event_id, fd).subscribe(
-      (data: any) => {
-        console.log(data);
-      },
-      function (err) {
-        alert(err);
-      },
-      function () {
-
-      }
-    );
   }
 }

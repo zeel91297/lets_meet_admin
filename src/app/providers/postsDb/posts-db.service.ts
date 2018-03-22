@@ -7,6 +7,7 @@ export class PostsDbService {
 
   url: string = 'http://localhost:3000/post/';
   url1: string = 'http://localhost:3000/deletePost/';
+  url2: string = 'http://localhost:3000/updatePostOnly/';
 
   constructor(public http: HttpClient) { }
 
@@ -26,10 +27,15 @@ export class PostsDbService {
     return this.http.post(this.url, fd);
   }
 
-  editPost(post: Post_Class) {
+  editPostOnly(fd: FormData) {
     // tslint:disable-next-line:prefer-const
-    let body = JSON.stringify(post);
-    return this.http.put(this.url + post.post_id, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+    // let body = JSON.stringify(post);
+    // return this.http.put(this.url, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+    return this.http.put(this.url, fd);
+  }
+
+  editPost(fd: FormData) {
+    return this.http.put(this.url, fd);
   }
 
   deletePost(post) {
