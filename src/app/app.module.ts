@@ -45,6 +45,9 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 import { LoginComponent } from './login/login.component';
+import { UnapprovedEventsComponent } from './unapproved-events/unapproved-events.component';
+import { ViewEventComponent } from './view-event/view-event.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 
 
@@ -63,7 +66,10 @@ import { LoginComponent } from './login/login.component';
     AddCommunityComponent,
     AddPostComponent,
     UpdatePostComponent,
-    LoginComponent
+    LoginComponent,
+    UnapprovedEventsComponent,
+    ViewEventComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

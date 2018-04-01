@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControlName } from '@angular/forms';
 
 import { EventsDbService } from '../providers/eventsDb/events-db.service';
 import { CommunityDbService } from '../providers/communitiesDb/community-db.service';

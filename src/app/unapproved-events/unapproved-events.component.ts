@@ -12,12 +12,11 @@ import { EventsDbService } from '../providers/eventsDb/events-db.service';
 import { Event_Community_User_Class } from '../shared/event_community_user_class';
 
 @Component({
-  selector: 'app-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css']
+  selector: 'app-unapproved-events',
+  templateUrl: './unapproved-events.component.html',
+  styleUrls: ['./unapproved-events.component.css']
 })
-export class EventsComponent implements OnInit {
-
+export class UnapprovedEventsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -35,7 +34,7 @@ export class EventsComponent implements OnInit {
     public router: Router) { }
 
   ngOnInit() {
-    this._dataEvent.getAllEvents().subscribe(
+    this._dataEvent.getUnapprovedEvents().subscribe(
       (data: Event_Community_User_Class[]) => {
         this.arrEvents = data;
         console.log(data);
@@ -74,7 +73,18 @@ export class EventsComponent implements OnInit {
   }
 
   updateEvent(item) {
-    this.router.navigate(['/updateEvent', item.event_id]);
+    this._dataEvent.verify_Event(item).subscribe(
+      (data: any) => {
+        alert('Event verified');
+        this.ngOnInit();
+      },
+      function (err) {
+        alert(err);
+      },
+      function () {
+
+      }
+    );
   }
 
   checkChange(item: Event_Community_User_Class) {
@@ -94,9 +104,9 @@ export class EventsComponent implements OnInit {
         (data: any) => {
           for (this.i = 0; this.i < this.delarr.length; this.i++) {
             this.arrEvents.splice(this.arrEvents.indexOf(this.delarr[this.i]), 1);
-            this.ngOnInit();
             console.log('DONE');
           }
+          this.ngOnInit();
           // this.hotel1 = [];
         },
         function (err) {
@@ -106,4 +116,9 @@ export class EventsComponent implements OnInit {
         });
     }
   }
+
+  viewDetails(item: Event_Community_User_Class) {
+    this.router.navigate(['/viewEvent', item.event_id]);
+  }
+
 }

@@ -13,14 +13,11 @@ import { Events_Class, Event_update_class } from '../shared/event_class';
 import { Community_Class } from '../shared/community_class';
 
 @Component({
-  selector: 'app-update-event',
-  templateUrl: './update-event.component.html',
-  styleUrls: ['./update-event.component.css']
+  selector: 'app-view-event',
+  templateUrl: './view-event.component.html',
+  styleUrls: ['./view-event.component.css']
 })
-export class UpdateEventComponent implements OnInit {
-
-
-  @ViewChild('fileInput') fileInput: ElementRef;
+export class ViewEventComponent implements OnInit {
 
   public _subscription: Subscription;
 
@@ -40,7 +37,6 @@ export class UpdateEventComponent implements OnInit {
   arrEvent: Events_Class[] = [];
   arrCommu: Community_Class[] = [];
 
-  selectedFile: File = null;
   fileFlag: Boolean = false;
 
   constructor(public router: Router,
@@ -71,6 +67,7 @@ export class UpdateEventComponent implements OnInit {
         this.event_date = this.arrEvent[0].event_date;
         this.event_loc = this.arrEvent[0].event_loc;
         this.community_id = this.arrEvent[0].fk_comm_id;
+        this.event_verify = this.arrEvent[0].event_verify;
       },
       function (err) {
         alert(err);
@@ -93,65 +90,25 @@ export class UpdateEventComponent implements OnInit {
     );
   }
 
-  getPicture() {
-    this.fileInput.nativeElement.click();
+  done() {
+    this.router.navigate(['/unApprovedEvents']);
   }
 
-  onFileSelected(value) {
-    this.selectedFile = <File>value.target.files[0];
-    this.fileFlag = true;
-    console.log(value);
+  verifyEvent() {
+    // tslint:disable-next-line:max-line-length
+    this._dataEvent.verify_Event(new Events_Class(this.event_id, this.event_name, this.event_des, this.event_pic, this.event_s_time, this.event_e_time, this.event_date, this.event_loc, this.created_by, this.community_id, this.event_verify)).subscribe(
+      (data: any) => {
+        alert('Event verified');
+        console.log(data);
+        this.router.navigate(['/unApprovedEvents']);
+      },
+      function (err) {
+        alert(err);
+      },
+      function () {
+
+      }
+    );
   }
-
-  onEventUpdate(eventform) {
-    if (this.selectedFile === null) {
-
-      // tslint:disable-next-line:max-line-length
-      this._dataEvent.updateEventOnly(new Event_update_class(this.event_id, eventform.value.event_name, eventform.value.event_des, eventform.value.event_s_time, eventform.value.event_e_time, this.event_date, eventform.value.event_loc, this.community_id)).subscribe(
-        (data: any) => {
-          console.log(data);
-          this.router.navigate(['/events']);
-        },
-        function (err) {
-          alert(err);
-        },
-        function () {
-
-        }
-      );
-
-    } else {
-      const fd = new FormData();
-      fd.append('event_id', this.event_id);
-      fd.append('event_name', eventform.value.event_name);
-      fd.append('event_des', eventform.value.event_des);
-      fd.append('image', this.selectedFile, this.selectedFile.name);
-      fd.append('event_s_time', eventform.value.event_s_time);
-      fd.append('event_e_time', eventform.value.event_e_time);
-      fd.append('event_date', this.event_date);
-      fd.append('event_loc', eventform.value.event_loc);
-      fd.append('fk_comm_id', this.community_id);
-
-
-      this._dataEvent.editEvent(fd).subscribe(
-        (data: any) => {
-          console.log(data);
-          this.router.navigate(['/events']);
-        },
-        function (err) {
-          alert(err);
-        },
-        function () {
-
-        }
-      );
-    }
-  }
-  /*  this.event_name = eventform.value.event_name;
-    this.event_des = eventform.value.event_des;
-    this.event_s_time = eventform.value.event_s_time;
-    this.event_e_time = eventform.value.event_e_time;
-    this.event_date = eventform.value.event_date;
-    this.event_loc = eventform.value.event_loc;*/
 
 }

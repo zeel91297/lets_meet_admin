@@ -18,7 +18,7 @@
             <mat-form-field class="example-full-width">
               <input matInput ngModel required email name="email_id" type="email" placeholder="Enter email" #email_id="ngModel">
               <mat-error *ngIf="email_id.hasError('required')">Enter Email</mat-error>
-              <mat-error *ngIf="email_id.hasError('email_id')">Enter valid Email Address</mat-error>
+              <mat-error *ngIf="email_id.hasError('email')">Enter valid Email Address</mat-error>
             </mat-form-field>
             <!-- <input class="form-control" type="text" required="" placeholder="Username"> -->
           </div>

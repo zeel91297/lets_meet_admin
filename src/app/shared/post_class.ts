@@ -10,3 +10,12 @@ export class Post_Class {
 
     }
 }
+
+// tslint:disable-next-line:class-name
+export class Post_Update_Class {
+    constructor(public post_id: number,
+        public post_title: string,
+        public post_des: string) {
+
+    }
+}

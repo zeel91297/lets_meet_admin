@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Events_Class } from '../../shared/event_class';
+import { Events_Class, Event_update_class } from '../../shared/event_class';
+import { Event_Community_User_Class } from '../../shared/event_community_user_class';
 
 @Injectable()
 export class EventsDbService {
 
-  public url: any = 'http://localhost:3000/event/';
-  url1: any = 'http://localhost:3000/comingEvent/';
-  url2: any = 'http://localhost:3000/event_reg/';
-  url3: any = 'http://localhost:3000/eventNotReg/';
+  public url: string = 'http://localhost:3000/event/';
+  url1: string = 'http://localhost:3000/comingEvent/';
+  url2: string = 'http://localhost:3000/event_reg/';
+  url3: string = 'http://localhost:3000/eventNotReg/';
+  url4: string = 'http://localhost:3000/updateEventOnly/';
+  url5: string = 'http://localhost:3000/deleAllEvent/';
+  url6: string = 'http://localhost:3000/unApprovedEvent/';
+
   constructor(public http: HttpClient) { }
 
   getAllEvents() {
@@ -34,8 +39,15 @@ export class EventsDbService {
     return this.http.put(this.url + evn.event_id, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
   }*/
 
-  editEvent(id, fd: FormData) {
-    return this.http.put(this.url + id, fd);
+  editEvent(fd: FormData) {
+    return this.http.put(this.url, fd);
+  }
+
+  updateEventOnly(event: Event_update_class) {
+    console.log(event);
+    // tslint:disable-next-line:prefer-const
+    let body = JSON.stringify(event);
+    return this.http.put(this.url4, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
   }
 
   deleteEvent(evn: Events_Class) {
@@ -55,4 +67,21 @@ export class EventsDbService {
     return this.http.get(this.url3 + id);
   }
 
+  deleteAllEvents(item: Event_Community_User_Class[]) {
+    console.log(item);
+    // tslint:disable-next-line:prefer-const
+    let body = JSON.stringify(item);
+    return this.http.post(this.url5, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
+  getUnapprovedEvents() {
+    return this.http.get(this.url6);
+  }
+
+  verify_Event(event) {
+    console.log(event);
+    // tslint:disable-next-line:prefer-const
+    let body = JSON.stringify(event);
+    return this.http.put(this.url6, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+  }
 }

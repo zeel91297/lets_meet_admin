@@ -5,7 +5,7 @@ import { Subscription } from 'Rxjs/Rx';
 import { routing } from '../app.routing';
 
 import { PostsDbService } from '../providers/postsDb/posts-db.service';
-import { Post_Class } from '../shared/post_class';
+import { Post_Class, Post_Update_Class } from '../shared/post_class';
 
 @Component({
   selector: 'app-update-post',
@@ -73,23 +73,23 @@ export class UpdatePostComponent implements OnInit {
     this.post_des = postForm.value.post_des;
 
     if (this.selectedFile === null) {
-      // const fd = new FormData();
-      // fd.append('post_id', this.post_id);
-      // fd.append('post_title', this.post_title);
-      // fd.append('post_des', this.post_des);
+      const fd = new FormData();
+      fd.append('post_id', this.post_id);
+      fd.append('post_title', this.post_title);
+      fd.append('post_des', this.post_des);
 
-      // this._dataPost.editPostOnly(fd).subscribe(
-      //   (data: any) => {
-      //     console.log(data);
-      //     this.router.navigate(['/posts']);
-      //   },
-      //   function (err) {
-      //     alert(err);
-      //   },
-      //   function () {
+      this._dataPost.editPostOnly(new Post_Update_Class(this.post_id, this.post_title, this.post_des)).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.router.navigate(['/posts']);
+        },
+        function (err) {
+          alert(err);
+        },
+        function () {
 
-      //   }
-      // );
+        }
+      );
 
     } else {
       const fd = new FormData();

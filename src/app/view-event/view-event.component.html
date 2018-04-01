@@ -1,0 +1,67 @@
+<!-- <p>
+  view-event works!
+</p> -->
+
+<app-header></app-header>
+<div class="content-page">
+  <div class="content page-content-wrapper">
+    <h1 class="display-1" style="text-align:center">View Event</h1>
+    <div align="left" style="padding:15px">
+      <form class="example-form" name="eform">
+        <mat-form-field class="example-full-width">
+          <input matInput ngModel readonly required placeholder="Event Name" name="event_name" [(ngModel)]="event_name" #e_name="ngModel">
+          <mat-error *ngIf="e_name.hasError('required')">Please Enter Event Name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput readonly ngModel required placeholder="Event Description" name="event_des" [(ngModel)]="event_des" #e_des="ngModel"
+            cols="30" rows="3"></textarea>
+          <mat-error *ngIf="e_des.hasError('required')">Please Enter Event Description</mat-error>
+        </mat-form-field>
+
+        <label>Event Picture:</label>
+        <img src="http://localhost:3000/images/events/{{event_pic}}" height="150" width="150" alt="..." class="img-thumbnail">
+
+        <mat-form-field class="example-full-width">
+          <label for="">Event Starting Time</label>
+          <input matInput readonly ngModel required type="time" name="event_s_time" [(ngModel)]="event_s_time" #e_s_time="ngModel">
+          <mat-error *ngIf="e_s_time.hasError('required')">Please Enter Starting Time</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <label for="">Event Ending Time</label>
+          <input matInput readonly ngModel type="time" name="event_e_time" [(ngModel)]="event_e_time" #e_e_time="ngModel">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput readonly ngModel [matDatepicker]="picker" placeholder="Choose a date" name="event_date" [(ngModel)]="event_date"
+            #e_date="ngModel">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput readonly ngModel required placeholder="Event Location" name="event_loc" [(ngModel)]="event_loc" #e_loc="ngModel"
+            cols="30" rows="3"></textarea>
+          <mat-error *ngIf="e_loc.hasError('required')">Please Enter Event Location</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select readonly placeholder="Select Community" name="c_id" [(ngModel)]="community_id">
+            <mat-option *ngFor="let item of arrCommu" [value]="item.comm_id">
+              {{ item.comm_name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="done()">Got it !!</button>
+        &nbsp; &nbsp; &nbsp;
+        <!-- <button mat-raised-button color="accent" (click)="verifyEvent()">Verify</button> -->
+
+      </form>
+
+    </div>
+  </div>
+  <!--</div>-->
+</div>
+<footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>

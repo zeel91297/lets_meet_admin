@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Post_Class } from '../../shared/post_class';
+import { Post_Class, Post_Update_Class } from '../../shared/post_class';
 
 @Injectable()
 export class PostsDbService {
@@ -27,11 +27,11 @@ export class PostsDbService {
     return this.http.post(this.url, fd);
   }
 
-  editPostOnly(fd: FormData) {
+  editPostOnly(post: Post_Update_Class) {
     // tslint:disable-next-line:prefer-const
-    // let body = JSON.stringify(post);
-    // return this.http.put(this.url, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
-    return this.http.put(this.url, fd);
+    let body = JSON.stringify(post);
+    return this.http.put(this.url2, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+    // return this.http.put(this.url, fd);
   }
 
   editPost(fd: FormData) {

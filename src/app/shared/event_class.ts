@@ -14,3 +14,17 @@ export class Events_Class {
 
     }
 }
+
+// tslint:disable-next-line:class-name
+export class Event_update_class {
+    constructor(public event_id: number,
+        public event_name: string,
+        public event_des: string,
+        public event_s_time: Date,
+        public event_e_time: Date,
+        public event_date: Date,
+        public event_loc: string,
+        public fk_comm_id: number) {
+
+    }
+}
