@@ -21,9 +21,13 @@ import { UpdatePostComponent } from './update-post/update-post.component';
 
 import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
+import { NotFoundComponent } from './not-found/not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 const arr: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'dashboard', component: DashboardComponent },
     { path: 'login', component: LoginComponent },
     { path: 'events', component: EventsComponent },
     { path: 'addEvent', component: AddEventComponent },
@@ -42,7 +46,10 @@ const arr: Routes = [
     { path: 'addPost', component: AddPostComponent },
     { path: 'updatePost/:id', component: UpdatePostComponent },
 
-    { path: 'feedbacks', component: FeedbacksComponent }
+    { path: 'feedbacks', component: FeedbacksComponent },
+
+    { path: 'notFound', component: NotFoundComponent },
+    { path: '**', redirectTo: '/notFound', pathMatch: 'full' }
 ];
 
 export const routing = RouterModule.forRoot(arr);

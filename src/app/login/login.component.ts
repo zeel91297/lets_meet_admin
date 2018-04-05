@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         console.log(data1);
         if (data1.length === 1) {
           localStorage.setItem('u_id', this.email_id);
-          this._router.navigate(['/events']);
+          this._router.navigate(['/dashboard']);
         } else {
           if (this.email_id.length === 1) {
             if (this.pass.length !== 1) {

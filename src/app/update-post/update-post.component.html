@@ -25,6 +25,7 @@
         </button>
         <input required type="file" name="pst_pic"  style="visibility: hidden" #fileInput (change)="onFileSelected($event)"
           id="">
+          <input type="file" name="pst_pic" (change)="onFileSelected($event)">
 
         <button type="submit" mat-button mat-raised-button color="warn">Update Post
           <mat-icon>done</mat-icon>

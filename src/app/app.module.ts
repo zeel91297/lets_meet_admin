@@ -48,6 +48,8 @@ import { LoginComponent } from './login/login.component';
 import { UnapprovedEventsComponent } from './unapproved-events/unapproved-events.component';
 import { ViewEventComponent } from './view-event/view-event.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -69,7 +71,9 @@ import { AddUserComponent } from './add-user/add-user.component';
     LoginComponent,
     UnapprovedEventsComponent,
     ViewEventComponent,
-    AddUserComponent
+    AddUserComponent,
+    NotFoundComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

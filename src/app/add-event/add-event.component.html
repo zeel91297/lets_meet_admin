@@ -21,9 +21,9 @@
         <label>Event Picture:</label>
         <input ngModel required type="file" name="e_pic" #event_pic="ngModel" (change)="onFileSelected($event)" id="">
         <!-- <mat-error *ngIf="event_pic.invalid && (event_pic.dirty || event_pic.touched)">Please Enter Event Picture</mat-error> -->
-        <div class="alert alert-danger" *ngIf="event_pic.hasError('required') && (event_pic.dirty || event_pic.touched)">
+        <!-- <div class="alert alert-danger" *ngIf="event_pic.hasError('required') && (event_pic.dirty || event_pic.touched)">
           pimg is required
-        </div>
+        </div> -->
 
 
         <mat-form-field class="example-full-width">
@@ -65,7 +65,7 @@
           <mat-error *ngIf="c_id.hasError('required')">Please Select a Community</mat-error>
         </mat-form-field>
 
-        <button type="submit" mat-button mat-raised-button color="warn">Create Event
+        <button type="submit" mat-button mat-raised-button color="warn" [disabled]="!eventform.form.valid">Create Event
           <mat-icon>done</mat-icon>
         </button>
 
