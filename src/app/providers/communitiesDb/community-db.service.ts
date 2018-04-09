@@ -5,7 +5,7 @@ import { Community_Class } from '../../shared/community_class';
 @Injectable()
 export class CommunityDbService {
 
-  url: string = 'http://localhost:3000/community/';
+  url: string = 'https://letsmeetbackend.herokuapp.com/community/';
 
   constructor(public http: HttpClient) { }
 

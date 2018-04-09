@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { AnonymousSubscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
 import { MatTableDataSource, MatSort, MatPaginator, Sort } from '@angular/material';
@@ -15,10 +16,13 @@ import { PostsDbService } from '../providers/postsDb/posts-db.service';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  private timerSubscription: AnonymousSubscription;
+  private postsSubscription: AnonymousSubscription;
 
   displayedColumns = ['check', 'post_title', 'post_date', 'post_fk_user_id', 'fk_comm_id', 'action'];
   dataSource: MatTableDataSource<Post_Class>;
@@ -30,19 +34,49 @@ export class PostsComponent implements OnInit {
     public router: Router) { }
 
   ngOnInit() {
-    this._dataPost.getAllPosts().subscribe(
+    // this._dataPost.getAllPosts().subscribe(
+    //   (data: Post_Class[]) => {
+    //     this.arrPost = data;
+    //     console.log(data);
+    //     this.dataSource = new MatTableDataSource(this.arrPost);
+    //     this.dataSource.paginator = this.paginator;
+    //     this.dataSource.sort = this.sort;
+    //   },
+    //   function (err) {
+    //     alert(err);
+    //   },
+    //   function () {
+
+    //   }
+    // );
+    this.refreshData();
+  }
+
+  public ngOnDestroy(): void {
+    if (this.postsSubscription) {
+      this.postsSubscription.unsubscribe();
+    }
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+  }
+  private subscribeToData(): void {
+
+    this.timerSubscription = Observable.timer(5000)
+      .subscribe(() => this.refreshData());
+  }
+  private refreshData(): void {
+    this.postsSubscription = this._dataPost.getAllPosts().subscribe(
+
       (data: Post_Class[]) => {
         this.arrPost = data;
-        console.log(data);
-        this.dataSource = new MatTableDataSource(this.arrPost);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.subscribeToData();
       },
-      function (err) {
-        alert(err);
+      function (error) {
+        console.log(error);
       },
       function () {
-
+        console.log('complete');
       }
     );
   }
@@ -54,7 +88,7 @@ export class PostsComponent implements OnInit {
   }
 
   deletePost(item) {
-
+    event.stopPropagation();
     this._dataPost.deletePost(item).subscribe(
       (data: Post_Class) => {
         this.ngOnInit();

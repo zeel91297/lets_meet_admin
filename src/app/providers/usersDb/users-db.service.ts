@@ -5,9 +5,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class UsersDbService {
 
-  urluser: string = 'http://localhost:3000/user/';
-  urlsignup: string = 'http://localhost:3000/user/';
-  url: string = 'http://localhost:3000/login';
+  urluser: string = 'https://letsmeetbackend.herokuapp.com/user/';
+  urlsignup: string = 'https://letsmeetbackend.herokuapp.com/user/';
+  url: string = 'https://letsmeetbackend.herokuapp.com/login';
   account: { user_id: string, user_pass: string } = {
     user_id: '',
     user_pass: ''

@@ -5,9 +5,9 @@ import { Post_Class, Post_Update_Class } from '../../shared/post_class';
 @Injectable()
 export class PostsDbService {
 
-  url: string = 'http://localhost:3000/post/';
-  url1: string = 'http://localhost:3000/deletePost/';
-  url2: string = 'http://localhost:3000/updatePostOnly/';
+  url: string = 'https://letsmeetbackend.herokuapp.com/post/';
+  url1: string = 'https://letsmeetbackend.herokuapp.com/deletePost/';
+  url2: string = 'https://letsmeetbackend.herokuapp.com/updatePostOnly/';
 
   constructor(public http: HttpClient) { }
 

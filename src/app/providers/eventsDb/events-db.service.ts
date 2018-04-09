@@ -7,13 +7,13 @@ import { Event_Community_User_Class } from '../../shared/event_community_user_cl
 @Injectable()
 export class EventsDbService {
 
-  public url: string = 'http://localhost:3000/event/';
-  url1: string = 'http://localhost:3000/comingEvent/';
-  url2: string = 'http://localhost:3000/event_reg/';
-  url3: string = 'http://localhost:3000/eventNotReg/';
-  url4: string = 'http://localhost:3000/updateEventOnly/';
-  url5: string = 'http://localhost:3000/deleAllEvent/';
-  url6: string = 'http://localhost:3000/unApprovedEvent/';
+  public url: string = 'https://letsmeetbackend.herokuapp.com/event/';
+  url1: string = 'https://letsmeetbackend.herokuapp.com/comingEvent/';
+  url2: string = 'https://letsmeetbackend.herokuapp.com/event_reg/';
+  url3: string = 'https://letsmeetbackend.herokuapp.com/eventNotReg/';
+  url4: string = 'https://letsmeetbackend.herokuapp.com/updateEventOnly/';
+  url5: string = 'https://letsmeetbackend.herokuapp.com/deleAllEvent/';
+  url6: string = 'https://letsmeetbackend.herokuapp.com/unApprovedEvent/';
 
   constructor(public http: HttpClient) { }
 
