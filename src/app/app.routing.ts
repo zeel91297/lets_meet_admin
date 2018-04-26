@@ -23,7 +23,7 @@ import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { DemoComponent } from './demo/demo.component';
 
 const arr: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -34,6 +34,7 @@ const arr: Routes = [
     { path: 'updateEvent/:id', component: UpdateEventComponent },
     { path: 'unApprovedEvents', component: UnapprovedEventsComponent },
     { path: 'viewEvent/:id', component: ViewEventComponent },
+    { path: 'demo', component: DemoComponent },
 
     { path: 'communities', component: CommunitiesComponent },
     { path: 'addCommunity', component: AddCommunityComponent },

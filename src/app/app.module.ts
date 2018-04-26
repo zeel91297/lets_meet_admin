@@ -16,7 +16,8 @@ import {
   MatExpansionModule,
   MatListModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatRadioModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -50,6 +51,7 @@ import { ViewEventComponent } from './view-event/view-event.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DemoComponent } from './demo/demo.component';
 
 
 
@@ -73,7 +75,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ViewEventComponent,
     AddUserComponent,
     NotFoundComponent,
-    DashboardComponent
+    DashboardComponent,
+    DemoComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +96,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatExpansionModule,
     MatListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatRadioModule
   ],
   providers: [EventsDbService,
     CommunityDbService,

@@ -8,6 +8,7 @@ export class UsersDbService {
   urluser: string = 'https://letsmeetbackend.herokuapp.com/user/';
   urlsignup: string = 'https://letsmeetbackend.herokuapp.com/user/';
   url: string = 'https://letsmeetbackend.herokuapp.com/login';
+
   account: { user_id: string, user_pass: string } = {
     user_id: '',
     user_pass: ''
@@ -22,12 +23,15 @@ export class UsersDbService {
   }
 
   doLogin(eid, pass) {
-    // let header = new Headers({ 'Content-Type': 'application/json' });
-    // let ro = new RequestOptions({ headers: header });
     this.account.user_id = eid;
     this.account.user_pass = pass;
     // tslint:disable-next-line:prefer-const
     let body = JSON.stringify(this.account);
     return this.http.post(this.url, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
+  addUser(fd: FormData) {
+    console.log(fd);
+    return this.http.post(this.urlsignup, fd);
   }
 }

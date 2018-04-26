@@ -73,10 +73,6 @@ export class UpdatePostComponent implements OnInit {
     this.post_des = postForm.value.post_des;
 
     if (this.selectedFile === null) {
-      // const fd = new FormData();
-      // fd.append('post_id', this.post_id);
-      // fd.append('post_title', this.post_title);
-      // fd.append('post_des', this.post_des);
 
       this._dataPost.editPostOnly(new Post_Update_Class(this.post_id, this.post_title, this.post_des)).subscribe(
         (data: any) => {
