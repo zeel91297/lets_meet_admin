@@ -52,6 +52,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DemoComponent } from './demo/demo.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 
 
@@ -76,7 +77,8 @@ import { DemoComponent } from './demo/demo.component';
     AddUserComponent,
     NotFoundComponent,
     DashboardComponent,
-    DemoComponent
+    DemoComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

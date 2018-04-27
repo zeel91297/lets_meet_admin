@@ -38,12 +38,14 @@ export class AddUserComponent implements OnInit {
 
   onAddUser(userForm) {
 
-    this.user_id = userForm.value.post_title;
-    this.user_name = userForm.value.post_des;
+    this.user_id = userForm.value.user_email;
+    this.user_name = userForm.value.user_name;
     this.user_pass = userForm.value.user_pass;
     this.user_gender = userForm.value.user_gender;
-    this.user_mob_no = userForm.value.user_no;
+    this.user_mob_no = userForm.value.user_mob_no;
     this.user_bdate = userForm.value.user_bdate;
+
+    console.log(this.user_id + '' + this.user_gender + '' + this.user_name + '' + this.user_pass + '' + this.user_mob_no);
 
     const fd = new FormData();
     fd.append('user_id', this.user_id);
@@ -53,6 +55,7 @@ export class AddUserComponent implements OnInit {
     fd.append('gender', this.user_gender);
     fd.append('user_mob_no', this.user_mob_no);
     fd.append('user_bdate', this.user_bdate);
+    console.log(fd);
     this._dataUser.addUser(fd).subscribe(
       (data: User_class) => {
         // alert("added");

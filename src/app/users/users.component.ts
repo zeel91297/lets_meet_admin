@@ -59,8 +59,7 @@ export class UsersComponent implements OnInit {
 
 
   }
-
   updateUser(item) {
-
+    this.router.navigate(['/updateuser', item.user_id]);
   }
 }

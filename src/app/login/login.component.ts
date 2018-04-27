@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.pass = login.value.pass;
     console.log(this.email_id);
     console.log(this.pass);
-    this._dataUser.doLogin(this.email_id, this.pass).subscribe(
+    this._dataUser.doLogin(this.email_id, this.pass, 'admin').subscribe(
       (data1: any) => {
         console.log(data1);
         if (data1.length === 1) {

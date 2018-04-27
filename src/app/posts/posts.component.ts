@@ -16,7 +16,7 @@ import { PostsDbService } from '../providers/postsDb/posts-db.service';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent implements OnInit, OnDestroy {
+export class PostsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -34,25 +34,25 @@ export class PostsComponent implements OnInit, OnDestroy {
     public router: Router) { }
 
   ngOnInit() {
-    // this._dataPost.getAllPosts().subscribe(
-    //   (data: Post_Class[]) => {
-    //     this.arrPost = data;
-    //     console.log(data);
-    //     this.dataSource = new MatTableDataSource(this.arrPost);
-    //     this.dataSource.paginator = this.paginator;
-    //     this.dataSource.sort = this.sort;
-    //   },
-    //   function (err) {
-    //     alert(err);
-    //   },
-    //   function () {
+    this._dataPost.getAllPosts().subscribe(
+      (data: any[]) => {
+        this.arrPost = data;
+        console.log(data);
+        this.dataSource = new MatTableDataSource(this.arrPost);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      function (err) {
+        alert(err);
+      },
+      function () {
 
-    //   }
-    // );
-    this.refreshData();
+      }
+    );
+
   }
 
-  public ngOnDestroy(): void {
+  /* public ngOnDestroy(): void {
     if (this.postsSubscription) {
       this.postsSubscription.unsubscribe();
     }
@@ -80,7 +80,7 @@ export class PostsComponent implements OnInit, OnDestroy {
       }
     );
   }
-
+ */
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches

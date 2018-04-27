@@ -24,6 +24,7 @@ import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DemoComponent } from './demo/demo.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 const arr: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -46,6 +47,7 @@ const arr: Routes = [
     { path: 'posts', component: PostsComponent },
     { path: 'addPost', component: AddPostComponent },
     { path: 'updatePost/:id', component: UpdatePostComponent },
+    { path: 'updateuser/:id', component: UpdateUserComponent },
 
     { path: 'feedbacks', component: FeedbacksComponent },
 

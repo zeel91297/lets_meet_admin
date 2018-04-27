@@ -8,18 +8,18 @@
     <div align="left" style="padding:15px">
       <form class="example-form" (ngSubmit)="onAddUser(userForm)" #userForm="ngForm">
         <mat-form-field class="example-full-width">
-          <input matInput ngModel required placeholder="Email ID" name="user_email" #user_id="ngModel">
+          <input matInput ngModel required placeholder="Email ID" [(ngModel)]="uid" name="user_email" #user_id="ngModel">
           <mat-error *ngIf="user_id.hasError('required')">Please Enter Email ID</mat-error>
           <mat-error *ngIf="user_id.hasError('email')">Please Enter valid Email ID</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <textarea matInput ngModel required placeholder="User Name" name="user_name" #user_name="ngModel" cols="30" rows="3"></textarea>
+          <textarea matInput ngModel required placeholder="User Name" [(ngModel)]="uname" name="user_name" #user_name="ngModel" cols="30" rows="3"></textarea>
           <mat-error *ngIf="user_name.hasError('required')">Please Enter User Name</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput ngModel required maxlength="10" minlength="6" placeholder="Enter your password" name="user_pass" #user_pass="ngModel"
+          <input matInput ngModel required maxlength="10" minlength="6" [(ngModel)]="upass" placeholder="Enter your password" name="user_pass" #user_pass="ngModel"
             [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
           <mat-error *ngIf="user_pass.hasError('required')">Please Enter Password</mat-error>
@@ -35,17 +35,17 @@
         <br>
 
         <mat-form-field class="example-full-width">
-          <input matInput type="tel" ngModel required placeholder="Mobile Number" minlength="8" maxlength="13" name="user_mob_no" #user_mob_no="ngModel">
+          <input matInput type="tel" ngModel required placeholder="Mobile Number" [(ngModel)]="umob" minlength="8" maxlength="13" name="user_mob_no" #user_mob_no="ngModel">
           <mat-error *ngIf="user_mob_no.hasError('required')">Please Enter Mobile Number</mat-error>
         </mat-form-field>
 
         <label>User Picture:</label>
-        <input ngModel required type="file" name="user_pic" #post_pic="ngModel" (change)="onFileSelected($event)" id="">
+        <!-- <input ngModel required type="file" name="user_pic" #post_pic="ngModel" (change)="onFileSelected($event)" id=""> -->
         <!-- <div class="alert alert-danger" *ngIf="user_pic.hasError('required') && (user_pic.dirty || user_pic.touched)">
           Profile Picture is required
         </div> -->
 
-        <mat-form-field>
+        <!-- <mat-form-field>
           <mat-select required placeholder="Select User Type" name="u_type" [(ngModel)]="user_type" user_type="ngModel">
             <mat-option value="admin" selected>
               Admin
@@ -54,7 +54,7 @@
               User
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <button type="submit" mat-button mat-raised-button color="warn">Create User
           <mat-icon>done</mat-icon>
