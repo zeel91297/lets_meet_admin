@@ -50,6 +50,11 @@
           <mat-cell *matCellDef="let element"> {{element.created_by}} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="category">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Community Category </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.cat_name}} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
           <mat-cell *matCellDef="let element">

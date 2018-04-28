@@ -23,7 +23,16 @@
         <input ngModel required type="file" name="comm_pic" #comm_pic="ngModel" (change)="onFileSelected($event)" id="">
         <!--<mat-error *ngIf="event_pic.hasError('required')">Please Enter Event Picture</mat-error>-->
 
-        <button type="submit" mat-button mat-icon-button color="warn">Create Community
+        <mat-form-field>
+          <mat-select required placeholder="Select Community" name="category_id" [(ngModel)]="category_id" #c_id="ngModel">
+            <mat-option *ngFor="let item of arrCat" [value]="item.cat_id">
+              {{ item.cat_name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="c_id.hasError('required')">Please Select a Category</mat-error>
+        </mat-form-field>
+
+        <button type="submit" mat-button mat-raised-button color="warn" [disabled]="!commuForm.form.valid">Create Community
           <mat-icon>done</mat-icon>
         </button>
 

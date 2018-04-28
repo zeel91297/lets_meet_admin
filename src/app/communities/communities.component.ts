@@ -9,7 +9,7 @@ import { MatTableDataSource, MatSort, MatPaginator, Sort } from '@angular/materi
 import { SelectionModel } from '@angular/cdk/collections';
 
 import { CommunityDbService } from '../providers/communitiesDb/community-db.service';
-import { Community_Class } from '../shared/community_class';
+import { Community_User_Category_Class } from '../shared/community_user_class';
 
 @Component({
   selector: 'app-communities',
@@ -21,19 +21,19 @@ export class CommunitiesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns = ['comm_name', 'comm_pic', 'comm_date', 'created_by', 'action'];
-  dataSource: MatTableDataSource<Community_Class>;
+  displayedColumns = ['comm_name', 'comm_pic', 'comm_date', 'created_by', 'category', 'action'];
+  dataSource: MatTableDataSource<Community_User_Category_Class>;
   // selection = new SelectionModel<Community_Class>(true, []);
-  selection: SelectionModel<Community_Class>;
+  selection: SelectionModel<Community_User_Category_Class>;
 
-  arrCommu: Community_Class[] = [];
+  arrCommu: Community_User_Category_Class[] = [];
 
   constructor(public _dataCommu: CommunityDbService,
     public router: Router) { }
 
   ngOnInit() {
     this._dataCommu.getAllCommunities().subscribe(
-      (data: Community_Class[]) => {
+      (data: Community_User_Category_Class[]) => {
         this.arrCommu = data;
         console.log(data);
         this.dataSource = new MatTableDataSource(this.arrCommu);

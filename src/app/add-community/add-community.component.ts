@@ -5,7 +5,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { routing } from '../app.routing';
 
 import { CommunityDbService } from '../providers/communitiesDb/community-db.service';
-
+import { CategoriesDbService } from '../providers/categoryDb/categories-db.service';
+import { Category_Class } from '../shared/category_class';
 
 
 @Component({
@@ -20,16 +21,31 @@ export class AddCommunityComponent implements OnInit {
   comm_des: string = '';
   comm_pic: string = '';
   comm_date: any = null;
-  created_by: string = 'zeel91297@gmail.com';
+  created_by: string = localStorage.getItem('u_id');
   comm_rating: any = null;
-  comm_fk_cat_id: string = '3';
+  comm_fk_cat_id: string;
+
+  arrCat: Category_Class[] = [];
 
   selectedFile: File = null;
 
   constructor(public router: Router,
-    public _dataCommu: CommunityDbService) { }
+    public _dataCommu: CommunityDbService,
+    public _dataCategory: CategoriesDbService) { }
 
   ngOnInit() {
+    this._dataCategory.getAllCategories().subscribe(
+      (data: Category_Class[]) => {
+        this.arrCat = data;
+        console.log(data);
+      },
+      function (err) {
+        alert(err);
+      },
+      function () {
+
+      }
+    );
   }
 
   onFileSelected(value) {
@@ -41,6 +57,7 @@ export class AddCommunityComponent implements OnInit {
 
     this.comm_name = commuForm.value.comm_name;
     this.comm_des = commuForm.value.comm_des;
+    this.comm_fk_cat_id = commuForm.value.category_id;
 
     const fd = new FormData();
     alert(this.created_by);

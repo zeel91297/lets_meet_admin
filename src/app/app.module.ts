@@ -19,6 +19,7 @@ import {
   MatNativeDateModule,
   MatRadioModule
 } from '@angular/material';
+import { NgProgressModule } from 'ngx-progressbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routing } from './app.routing';
@@ -33,6 +34,7 @@ import { UsersDbService } from './providers/usersDb/users-db.service';
 import { PostsDbService } from './providers/postsDb/posts-db.service';
 import { FeedbackDbService } from './providers/feedbackDb/feedback-db.service';
 import { RsvpDbService } from './providers/rsvpDb/rsvp-db.service';
+import { CategoriesDbService } from './providers/categoryDb/categories-db.service';
 
 import { EventsComponent } from './events/events.component';
 import { AddEventComponent } from './add-event/add-event.component';
@@ -85,6 +87,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     HttpClientModule,
     routing,
     FormsModule,
+    NgProgressModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatSortModule,
@@ -106,7 +109,8 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     UsersDbService,
     PostsDbService,
     FeedbackDbService,
-    RsvpDbService
+    RsvpDbService,
+    CategoriesDbService
   ],
   bootstrap: [AppComponent]
 })

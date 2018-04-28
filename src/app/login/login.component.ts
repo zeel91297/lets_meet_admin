@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgProgress } from 'ngx-progressbar';
 
 import { UsersDbService } from '../providers/usersDb/users-db.service';
 
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   pass: string;
 
   constructor(public _router: Router,
+    public ngProgress: NgProgress,
     public _dataUser: UsersDbService) { }
 
   ngOnInit() {
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
     this.pass = login.value.pass;
     console.log(this.email_id);
     console.log(this.pass);
+    this.ngProgress.start();
     this._dataUser.doLogin(this.email_id, this.pass, 'admin').subscribe(
       (data1: any) => {
         console.log(data1);
@@ -36,14 +39,19 @@ export class LoginComponent implements OnInit {
           if (this.email_id.length === 1) {
             if (this.pass.length !== 1) {
               alert('password is wrong');
+              this.ngProgress.done();
             }
           } else {
             alert('Incorrect Email and Password');
+            this.ngProgress.done();
           }
         }
       },
       function (e) {
         alert(e);
+      },
+      function () {
+
       }
     );
   }

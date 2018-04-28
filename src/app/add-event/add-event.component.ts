@@ -24,7 +24,7 @@ export class AddEventComponent implements OnInit {
   event_e_time: any;
   event_date: any;
   event_loc: any = '';
-  created_by: any = 'zeel91297@gmail.com';
+  created_by: string = localStorage.getItem('u_id');
   event_pic: any = '';
   community_id: any;
   event_verify: any = '';

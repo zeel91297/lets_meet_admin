@@ -32,7 +32,7 @@ export class UpdateEventComponent implements OnInit {
   event_date: any;
   e_date: string;
   event_loc: string = '';
-  created_by: string = 'zeel91297@gmail.com';
+  created_by: string = localStorage.getItem('u_id');
   event_pic: any = '';
   community_id: any;
   event_verify: string = '';
@@ -147,11 +147,5 @@ export class UpdateEventComponent implements OnInit {
       );
     }
   }
-  /*  this.event_name = eventform.value.event_name;
-    this.event_des = eventform.value.event_des;
-    this.event_s_time = eventform.value.event_s_time;
-    this.event_e_time = eventform.value.event_e_time;
-    this.event_date = eventform.value.event_date;
-    this.event_loc = eventform.value.event_loc;*/
 
 }
