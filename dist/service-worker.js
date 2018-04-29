@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["assets/images/favicon.ico","a52df2df23ea539ba4ff9441b78b2005"],["assets/images/restaurant.png","aee038bb52fea8b3bcd57f2014777d95"],["assets/images/x.png","4d3d59d1b7f667fbb415a7531051bd48"],["index.html","5e6ece69cdce924420c2b9c97d9ae5fa"],["inline.318b50c57b4eba3d437b.bundle.js","6eaa1608803b51f7d836604d9585670d"],["main.42ee7b62765eb4d8b905.bundle.js","43324c2c312e7eb429a398e74cf6af3c"],["polyfills.bf95165a1d5098766b92.bundle.js","bce3cceb140b863ff4732be24b500ac3"],["styles.f76ed1003ab2465ac072.bundle.css","0b09b1d5b615a61cda324f34f2f1a646"]];
+var precacheConfig = [["assets/images/favicon.ico","a52df2df23ea539ba4ff9441b78b2005"],["assets/images/restaurant.png","aee038bb52fea8b3bcd57f2014777d95"],["assets/images/x.png","4d3d59d1b7f667fbb415a7531051bd48"],["index.html","20501a7463595e3cc463dce8a06f5fc3"],["inline.318b50c57b4eba3d437b.bundle.js","6eaa1608803b51f7d836604d9585670d"],["main.42ee7b62765eb4d8b905.bundle.js","43324c2c312e7eb429a398e74cf6af3c"],["polyfills.bf95165a1d5098766b92.bundle.js","bce3cceb140b863ff4732be24b500ac3"],["styles.f76ed1003ab2465ac072.bundle.css","0b09b1d5b615a61cda324f34f2f1a646"]];
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
