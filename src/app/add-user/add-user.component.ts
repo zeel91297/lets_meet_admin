@@ -19,13 +19,15 @@ export class AddUserComponent implements OnInit {
     public _dataUser: UsersDbService) { }
 
   selectedFile: File = null;
-  user_id: string = '';
-  user_name: string = '';
-  user_pass: string = '';
-  user_pic: string = '';
-  user_gender: string = '';
-  user_mob_no: string = '';
-  user_bdate: any;
+
+  eid: string;
+  uname: string;
+  pass: string;
+  gender: string;
+  mobile: string;
+  myDate: any;
+  image: any;
+  token: string;
 
   ngOnInit() {
   }
@@ -38,29 +40,31 @@ export class AddUserComponent implements OnInit {
 
   onAddUser(userForm) {
 
-    this.user_id = userForm.value.user_email;
-    this.user_name = userForm.value.user_name;
-    this.user_pass = userForm.value.user_pass;
-    this.user_gender = userForm.value.user_gender;
-    this.user_mob_no = userForm.value.user_mob_no;
-    this.user_bdate = userForm.value.user_bdate;
-
-    console.log(this.user_id + '' + this.user_gender + '' + this.user_name + '' + this.user_pass + '' + this.user_mob_no);
+    this.eid = userForm.value.eid;
+    this.uname = userForm.value.uname;
+    this.pass = userForm.value.pass;
+    this.gender = userForm.value.gender;
+    this.mobile = userForm.value.mobile;
+    this.myDate = userForm.value.myDate;
+    this.token = userForm.value.token;
 
     const fd = new FormData();
-    fd.append('user_id', this.user_id);
-    fd.append('user_name', this.user_name);
-    fd.append('user_pass', this.user_pass);
+    fd.append('user_id', this.eid);
+    fd.append('user_name', this.uname);
+    fd.append('user_pass', this.pass);
     fd.append('image', this.selectedFile, this.selectedFile.name);
-    fd.append('gender', this.user_gender);
-    fd.append('user_mob_no', this.user_mob_no);
-    fd.append('user_bdate', this.user_bdate);
+    fd.append('gender', this.gender);
+    fd.append('user_mob_no', this.mobile);
+    fd.append('user_bdate', this.myDate);
+    fd.append('token', this.token);
+   // alert(this.eid);
     console.log(fd);
+    console.log(this.token);
     this._dataUser.addUser(fd).subscribe(
-      (data: User_class) => {
-        // alert("added");
-        console.log(data);
+      (data: any) => {
+        alert('done');
         this.router.navigate(['/users']);
+        console.log(data);
       },
       function (err) {
         alert(err);
@@ -69,7 +73,6 @@ export class AddUserComponent implements OnInit {
 
       }
     );
-
   }
 
 

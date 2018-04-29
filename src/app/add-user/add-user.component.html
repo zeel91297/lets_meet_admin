@@ -8,26 +8,26 @@
     <div align="left" style="padding:15px">
       <form class="example-form" (ngSubmit)="onAddUser(userForm)" #userForm="ngForm">
         <mat-form-field class="example-full-width">
-          <input matInput ngModel required placeholder="Email ID" name="user_email" #user_id="ngModel">
-          <mat-error *ngIf="user_id.hasError('required')">Please Enter Email ID</mat-error>
-          <mat-error *ngIf="user_id.hasError('email')">Please Enter valid Email ID</mat-error>
+          <input matInput ngModel required placeholder="Email ID" name="eid" #eid="ngModel">
+          <mat-error *ngIf="eid.hasError('required')">Please Enter Email ID</mat-error>
+          <mat-error *ngIf="eid.hasError('email')">Please Enter valid Email ID</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <textarea matInput ngModel required placeholder="User Name" name="user_name" #user_name="ngModel" cols="30" rows="3"></textarea>
-          <mat-error *ngIf="user_name.hasError('required')">Please Enter User Name</mat-error>
+          <input matInput ngModel required placeholder="User Name" name="uname" #uname="ngModel">
+          <mat-error *ngIf="uname.hasError('required')">Please Enter User Name</mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput ngModel required maxlength="10" minlength="6" placeholder="Enter your password" name="user_pass" #user_pass="ngModel"
+          <input matInput ngModel required maxlength="10" minlength="6" placeholder="Enter your password" name="pass" #pass="ngModel"
             [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-          <mat-error *ngIf="user_pass.hasError('required')">Please Enter Password</mat-error>
-          <mat-error *ngIf="user_pass.hasError('minlength')">Minimum length is 6</mat-error>
+          <mat-error *ngIf="pass.hasError('required')">Please Enter Password</mat-error>
+          <mat-error *ngIf="pass.hasError('minlength')">Minimum length is 6</mat-error>
         </mat-form-field>
 
         <label>User Gender</label>
-        <mat-radio-group required class="example-radio-group" #user_gender=ngModel ngModel name="user_gender">
+        <mat-radio-group required class="example-radio-group" #gender=ngModel ngModel name="gender">
           <mat-radio-button value="Male">Male</mat-radio-button>
           <mat-radio-button value="Female">Female</mat-radio-button>
         </mat-radio-group>
@@ -35,8 +35,8 @@
         <br>
 
         <mat-form-field class="example-full-width">
-          <input matInput type="tel" ngModel required placeholder="Mobile Number" minlength="8" maxlength="13" name="user_mob_no" #user_mob_no="ngModel">
-          <mat-error *ngIf="user_mob_no.hasError('required')">Please Enter Mobile Number</mat-error>
+          <input matInput type="tel" ngModel required placeholder="Mobile Number" minlength="8" maxlength="13" name="mobile" #mobile="ngModel">
+          <mat-error *ngIf="mobile.hasError('required')">Please Enter Mobile Number</mat-error>
         </mat-form-field>
 
         <label>User Picture:</label>
@@ -45,8 +45,14 @@
           Profile Picture is required
         </div> -->
 
+        <mat-form-field class="example-full-width">
+          <label for="">Birth Date:</label>
+          <input matInput ngModel required type="date" name="myDate" #myDate="ngModel">
+          <mat-error *ngIf="myDate.hasError('required')">Please Enter Your Birth Date</mat-error>
+        </mat-form-field>
+
         <mat-form-field>
-          <mat-select required placeholder="Select User Type" name="u_type" [(ngModel)]="user_type" user_type="ngModel">
+          <mat-select ngModel required placeholder="Select User Type" name="token" #token="ngModel">
             <mat-option value="admin" selected>
               Admin
             </mat-option>
@@ -56,7 +62,7 @@
           </mat-select>
         </mat-form-field>
 
-        <button type="submit" mat-button mat-raised-button color="warn">Create User
+        <button type="submit" mat-button mat-raised-button color="warn" [disabled]="!userForm.form.valid">Create User
           <mat-icon>done</mat-icon>
         </button>
 
@@ -65,4 +71,3 @@
     </div>
   </div>
 </div>
-<footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>

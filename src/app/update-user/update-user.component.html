@@ -4,49 +4,48 @@
 <app-header></app-header>
 <div class="content-page">
   <div class="content page-content-wrapper">
-    <h1 class="display-1" style="text-align:center">Create User</h1>
+    <h1 class="display-1" style="text-align:center">Update User</h1>
     <div align="left" style="padding:15px">
-      <form class="example-form" (ngSubmit)="onAddUser(userForm)" #userForm="ngForm">
+      <form class="example-form" (ngSubmit)="onUpdateUser(userForm)" #userForm="ngForm">
+
         <mat-form-field class="example-full-width">
-          <input matInput ngModel required placeholder="Email ID" [(ngModel)]="uid" name="user_email" #user_id="ngModel">
-          <mat-error *ngIf="user_id.hasError('required')">Please Enter Email ID</mat-error>
-          <mat-error *ngIf="user_id.hasError('email')">Please Enter valid Email ID</mat-error>
+          <input matInput ngModel required placeholder="Email ID" readonly [(ngModel)]="eid" name="eid" #ed="ngModel">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <textarea matInput ngModel required placeholder="User Name" [(ngModel)]="uname" name="user_name" #user_name="ngModel" cols="30" rows="3"></textarea>
-          <mat-error *ngIf="user_name.hasError('required')">Please Enter User Name</mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput ngModel required maxlength="10" minlength="6" [(ngModel)]="upass" placeholder="Enter your password" name="user_pass" #user_pass="ngModel"
-            [type]="hide ? 'password' : 'text'">
-          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-          <mat-error *ngIf="user_pass.hasError('required')">Please Enter Password</mat-error>
-          <mat-error *ngIf="user_pass.hasError('minlength')">Minimum length is 6</mat-error>
+          <input matInput ngModel required placeholder="User Name" [(ngModel)]="uname" name="uname" #unme="ngModel">
+          <mat-error *ngIf="unme.hasError('required')">Please Enter User Name</mat-error>
         </mat-form-field>
 
         <label>User Gender</label>
-        <mat-radio-group required class="example-radio-group" #user_gender=ngModel ngModel name="user_gender">
+        <mat-radio-group required class="example-radio-group" [(ngModel)]="gender" #gndr=ngModel ngModel name="gender">
           <mat-radio-button value="Male">Male</mat-radio-button>
           <mat-radio-button value="Female">Female</mat-radio-button>
         </mat-radio-group>
-        <!-- <mat-error *ngIf="user_gender.hasError('required')">Please Enter Password</mat-error> -->
         <br>
 
         <mat-form-field class="example-full-width">
-          <input matInput type="tel" ngModel required placeholder="Mobile Number" [(ngModel)]="umob" minlength="8" maxlength="13" name="user_mob_no" #user_mob_no="ngModel">
-          <mat-error *ngIf="user_mob_no.hasError('required')">Please Enter Mobile Number</mat-error>
+          <input matInput type="tel" ngModel required placeholder="Mobile Number" [(ngModel)]="mobile" minlength="8" maxlength="13"
+            name="mobile" #mbile="ngModel">
+          <mat-error *ngIf="mbile.hasError('required')">Please Enter Mobile Number</mat-error>
         </mat-form-field>
 
         <label>User Picture:</label>
-        <!-- <input ngModel required type="file" name="user_pic" #post_pic="ngModel" (change)="onFileSelected($event)" id=""> -->
+        <img src="https://letsmeetbackend.herokuapp.com/images/users/{{user_pic}}" height="150" width="150" alt="..." class="img-thumbnail">
+        <input type="file" name="user_pic" (change)="onFileSelected($event)" id="">
         <!-- <div class="alert alert-danger" *ngIf="user_pic.hasError('required') && (user_pic.dirty || user_pic.touched)">
           Profile Picture is required
         </div> -->
 
-        <!-- <mat-form-field>
-          <mat-select required placeholder="Select User Type" name="u_type" [(ngModel)]="user_type" user_type="ngModel">
+        <mat-form-field>
+          <input matInput required ngModel [matDatepicker]="picker" placeholder="Choose a date" name="myDate" [(ngModel)]="myDate"
+            #b_date="ngModel">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select ngModel required placeholder="Select User Type" [(ngModel)]="token" name="token" #tken="ngModel">
             <mat-option value="admin" selected>
               Admin
             </mat-option>
@@ -54,15 +53,13 @@
               User
             </mat-option>
           </mat-select>
-        </mat-form-field> -->
+        </mat-form-field>
 
-        <button type="submit" mat-button mat-raised-button color="warn">Create User
+        <button type="submit" mat-button mat-raised-button color="warn" [disabled]="!userForm.form.valid">Update User
           <mat-icon>done</mat-icon>
         </button>
-
 
       </form>
     </div>
   </div>
 </div>
-<footer class="footer"> © 2016 WebAdmin - All Rights Reserved. </footer>

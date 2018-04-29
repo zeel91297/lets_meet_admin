@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User_class } from '../shared/user_class';
+
+import { User_class, Update_User_Class } from '../shared/user_class';
 import { UsersDbService } from '../providers/usersDb/users-db.service';
 
 // tslint:disable-next-line:import-blacklist
@@ -14,39 +15,40 @@ import { Subscription } from 'rxjs/Rx';
 export class UpdateUserComponent implements OnInit {
 
   public _subscription: Subscription;
-  public uid:string;
-  public uname:string="";
-  public upass:string="";
-  public ugender:string="";
-  public umob:string="";
-  public upic:string="";
-  public utype:string="";
-  arrPost: User_class[] = [];
+  eid: string;
+  uname: string;
+  gender: string;
+  mobile: string;
+  myDate: any;
+  user_pic: any;
+  token: string;
+
+  arrUser: User_class[] = [];
+
+  selectedFile: File = null;
   constructor(public router: Router,
     public activatedRoute: ActivatedRoute,
-    public data:UsersDbService
-    ) { }
+    public dataUser: UsersDbService
+  ) { }
 
   ngOnInit() {
     this._subscription = this.activatedRoute.params.subscribe(
       (para: any) => {
-        this.uid = para['id'];
-        console.log(this.uid);
+        this.eid = para['id'];
+        console.log(this.eid);
       }
     );
 
-    this.data.getUser(this.uid).subscribe(
+    this.dataUser.getUser(this.eid).subscribe(
       (data: User_class[]) => {
-        this.arrPost = data;
-        console.log(this.arrPost);
-        // this. = this.arrPost[0].post_title;
-        // this.post_des = this.arrPost[0].post_des;
-        // this.post_pic = this.arrPost[0].post_pic;
-        /* this.uname=this.arrPost[0].user_name;
-        this.umob=this.arrPost[0].user_mob_no;
-        this.ugender=this.arrPost[0].user_gender;
-        this.upass=this.arrPost[0].user_pass;
-        console.log(this.post_pic); */
+        this.arrUser = data;
+        console.log(this.arrUser);
+        this.uname = this.arrUser[0].user_name;
+        this.gender = this.arrUser[0].gender;
+        this.mobile = this.arrUser[0].user_mob_no;
+        this.user_pic = this.arrUser[0].user_pic;
+        this.token = this.arrUser[0].token;
+        this.myDate = this.arrUser[0].user_bdate;
       },
       function (err) {
         alert(err);
@@ -57,4 +59,55 @@ export class UpdateUserComponent implements OnInit {
     );
   }
 
+  onFileSelected(value) {
+    this.selectedFile = <File>value.target.files[0];
+    console.log(value);
+  }
+
+  onUpdateUser(userForm) {
+
+    if (this.selectedFile === null) {
+
+      this.dataUser.editUserOnly(new Update_User_Class(this.eid, this.uname, this.gender, this.mobile, this.myDate, this.token)).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.router.navigate(['/users']);
+        },
+        function (err) {
+          alert(err);
+        },
+        function () {
+
+        }
+      );
+
+    } else {
+      this.uname = userForm.value.uname;
+      this.gender = userForm.value.gender;
+      this.mobile = userForm.value.mobile;
+      this.myDate = userForm.value.myDate;
+      this.token = userForm.value.token;
+      const fd = new FormData();
+      fd.append('user_id', this.eid);
+      fd.append('user_name', this.uname);
+      fd.append('image', this.selectedFile, this.selectedFile.name);
+      fd.append('gender', this.gender);
+      fd.append('user_mob_no', this.mobile);
+      fd.append('user_bdate', this.myDate);
+      fd.append('token', this.token);
+
+      this.dataUser.editUser(fd).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.router.navigate(['/users']);
+        },
+        function (err) {
+          alert(err);
+        },
+        function () {
+
+        }
+      );
+    }
+  }
 }
