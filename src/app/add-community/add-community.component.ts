@@ -24,6 +24,7 @@ export class AddCommunityComponent implements OnInit {
   created_by: string = localStorage.getItem('u_id');
   comm_rating: any = null;
   comm_fk_cat_id: string;
+  category_id: any;
 
   arrCat: Category_Class[] = [];
 

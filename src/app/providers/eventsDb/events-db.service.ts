@@ -40,7 +40,7 @@ export class EventsDbService {
   }*/
 
   editEvent(fd: FormData) {
-    return this.http.put(this.url, fd);
+    return this.http.put('http://localhost:3000/event', fd);
   }
 
   updateEventOnly(event: Event_update_class) {

@@ -22,10 +22,10 @@
 
         <label>Event Picture:</label>
         <img src="https://letsmeetbackend.herokuapp.com/images/events/{{event_pic}}" height="150" width="150" alt="..." class="img-thumbnail">
-        <button mat-icon-button color="primary" name="btnImg">
+        <!-- <button mat-icon-button color="primary" name="btnImg">
           <mat-icon (click)="getPicture()">mode edit</mat-icon>
-        </button>
-        <input required name="event_pic" type="file" style="visibility: hidden" #fileInput (change)="onFileSelected($event)">
+        </button> -->
+        <input required name="event_pic" type="file" (change)="onFileSelected($event)">
 
         <!--<mat-error *ngIf="event_pic.hasError('required')">Please Enter Event Picture</mat-error>-->
 

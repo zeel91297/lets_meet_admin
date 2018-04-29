@@ -28,6 +28,7 @@ export class AddUserComponent implements OnInit {
   myDate: any;
   image: any;
   token: string;
+  hide = true;
 
   ngOnInit() {
   }
@@ -57,7 +58,7 @@ export class AddUserComponent implements OnInit {
     fd.append('user_mob_no', this.mobile);
     fd.append('user_bdate', this.myDate);
     fd.append('token', this.token);
-   // alert(this.eid);
+    // alert(this.eid);
     console.log(fd);
     console.log(this.token);
     this._dataUser.addUser(fd).subscribe(

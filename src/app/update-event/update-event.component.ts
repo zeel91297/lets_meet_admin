@@ -99,7 +99,6 @@ export class UpdateEventComponent implements OnInit {
 
   onFileSelected(value) {
     this.selectedFile = <File>value.target.files[0];
-    this.fileFlag = true;
     console.log(value);
   }
 
@@ -107,18 +106,25 @@ export class UpdateEventComponent implements OnInit {
     if (this.selectedFile === null) {
 
       // tslint:disable-next-line:max-line-length
-      this._dataEvent.updateEventOnly(new Event_update_class(this.event_id, eventform.value.event_name, eventform.value.event_des, eventform.value.event_s_time, eventform.value.event_e_time, this.event_date, eventform.value.event_loc, this.community_id)).subscribe(
-        (data: any) => {
-          console.log(data);
-          this.router.navigate(['/events']);
-        },
-        function (err) {
-          alert(err);
-        },
-        function () {
+      this._dataEvent.updateEventOnly(new Event_update_class(this.event_id,
+        eventform.value.event_name,
+        eventform.value.event_des,
+        eventform.value.event_s_time,
+        eventform.value.event_e_time,
+        this.event_date,
+        eventform.value.event_loc,
+        this.community_id)).subscribe(
+          (data: any) => {
+            console.log(data);
+            this.router.navigate(['/events']);
+          },
+          function (err) {
+            alert(err);
+          },
+          function () {
 
-        }
-      );
+          }
+        );
 
     } else {
       const fd = new FormData();
