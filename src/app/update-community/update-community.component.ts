@@ -10,6 +10,7 @@ import { routing } from '../app.routing';
 import { Category_Class } from '../shared/category_class';
 import { CategoriesDbService } from '../providers/categoryDb/categories-db.service';
 import { Community_User_Category_Class } from '../shared/community_user_class';
+import { Update_Community_Class } from '../shared/community_class';
 
 @Component({
   selector: 'app-update-community',
@@ -53,6 +54,7 @@ export class UpdateCommunityComponent implements OnInit {
         this.comm_name = this.arrCommu[0].comm_name;
         this.comm_des = this.arrCommu[0].comm_des;
         this.comm_pic = this.arrCommu[0].comm_pic;
+        console.log(this.comm_pic);
         this.comm_fk_cat_id = this.arrCommu[0].cat_id;
         this.cat_name = this.arrCommu[0].cat_name;
       }
@@ -71,35 +73,54 @@ export class UpdateCommunityComponent implements OnInit {
     );
   }
 
+  onFileSelected(value) {
+    this.selectedFile = <File>value.target.files[0];
+    console.log(value);
+  }
 
-  onAddCommunity(commuForm) {
+  onUpdateCommunity(commuForm) {
 
     this.comm_name = commuForm.value.comm_name;
     this.comm_des = commuForm.value.comm_des;
     this.comm_fk_cat_id = commuForm.value.category_id;
 
-    const fd = new FormData();
-    alert(this.created_by);
-    fd.append('comm_id', this.comm_id);
-    fd.append('comm_name', this.comm_name);
-    fd.append('comm_des', this.comm_des);
-    fd.append('image', this.selectedFile, this.selectedFile.name);
-    fd.append('comm_date', this.comm_date);
-    fd.append('comm_rating', this.comm_rating);
-    fd.append('created_by', this.created_by);
-    fd.append('comm_fk_cat_id', this.comm_fk_cat_id);
+    if (this.selectedFile === null) {
 
-    this._dataCommu.addCommunity(fd).subscribe(
-      (data: any) => {
-        alert('Done');
-        this.router.navigate(['/communities']);
-      },
-      function (err) {
-        alert(err);
-      },
-      function () {
-      }
-    );
+      // tslint:disable-next-line:max-line-length
+      this._dataCommu.editCommunityOnly(new Update_Community_Class(this.comm_id, this.comm_name, this.comm_des, this.comm_fk_cat_id)).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.router.navigate(['/communities']);
+        },
+        function (err) {
+          alert(err);
+        },
+        function () {
+
+        }
+      );
+
+    } else {
+      const fd = new FormData();
+      alert(this.created_by);
+      fd.append('comm_id', this.comm_id);
+      fd.append('comm_name', this.comm_name);
+      fd.append('comm_des', this.comm_des);
+      fd.append('image', this.selectedFile, this.selectedFile.name);
+      fd.append('comm_fk_cat_id', this.comm_fk_cat_id);
+
+      this._dataCommu.editCommunity(fd).subscribe(
+        (data: any) => {
+          alert('Done');
+          this.router.navigate(['/communities']);
+        },
+        function (err) {
+          alert(err);
+        },
+        function () {
+        }
+      );
+    }
   }
-
 }
+

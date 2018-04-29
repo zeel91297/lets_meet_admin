@@ -7,7 +7,7 @@
   <div class="content page-content-wrapper">
     <h1 class="display-1" style="text-align:center">Update Community</h1>
     <div align="left" style="padding:15px">
-      <form class="example-form" (ngSubmit)="onAddCommunity(commuForm)" #commuForm="ngForm">
+      <form class="example-form" (ngSubmit)="onUpdateCommunity(commuForm)" #commuForm="ngForm">
         <mat-form-field class="example-full-width">
           <input matInput ngModel required placeholder="Community Name" name="comm_name" [(ngModel)]="comm_name" #c_name="ngModel">
           <mat-error *ngIf="c_name.hasError('required')">Please Enter Community Name</mat-error>
@@ -20,8 +20,8 @@
         </mat-form-field>
 
         <label>Community Picture:</label>
-        <img src="https://letsmeetbackend.herokuapp.com/images/communities/{{comm_pic}}" height="150" width="150" alt="Unavailable" class="img-thumbnail">
-        <input ngModel required type="file" name="comm_pic" #comm_pic="ngModel" id="">
+        <img src="https://letsmeetbackend.herokuapp.com/images/communities/{{comm_pic}}" height="150" width="150" alt="..." class="img-thumbnail">
+        <input type="file" name="comm_pic" id="" (change)="onFileSelected($event)">
 
         <mat-form-field>
           <mat-select required placeholder="Select Community" name="category_id" [(ngModel)]="comm_fk_cat_id" #c_id="ngModel">
@@ -32,7 +32,7 @@
           <mat-error *ngIf="c_id.hasError('required')">Please Select a Category</mat-error>
         </mat-form-field>
 
-        <button type="submit" mat-button mat-raised-button color="warn" [disabled]="!commuForm.form.valid">Create Community
+        <button type="submit" mat-button mat-raised-button color="warn" [disabled]="!commuForm.form.valid">Update Community
           <mat-icon>done</mat-icon>
         </button>
 
