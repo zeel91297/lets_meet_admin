@@ -55,6 +55,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DemoComponent } from './demo/demo.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 
 
 
@@ -80,7 +81,8 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     NotFoundComponent,
     DashboardComponent,
     DemoComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    ForgetPassComponent
   ],
   imports: [
     BrowserModule,

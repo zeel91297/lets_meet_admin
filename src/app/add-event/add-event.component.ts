@@ -29,6 +29,8 @@ export class AddEventComponent implements OnInit {
   community_id: any;
   event_verify: any = '';
 
+  today: string;
+
   selectedFile: File = null;
 
   arrCommu: Community_Class[] = [];
@@ -50,6 +52,7 @@ export class AddEventComponent implements OnInit {
 
       }
     );
+    this.today = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString();
   }
 
   onFileSelected(value) {

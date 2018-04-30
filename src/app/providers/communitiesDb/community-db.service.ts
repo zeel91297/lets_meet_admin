@@ -8,6 +8,7 @@ export class CommunityDbService {
   // url: string = 'https://letsmeetbackend.herokuapp.com/community/';
   url: string = 'https://letsmeetbackend.herokuapp.com/community/';
   url1: string = 'https://letsmeetbackend.herokuapp.com/updateCommunityOnly';
+  urlCnt: string = 'http://letsmeetbackend.herokuapp.com/ccount/';
 
   constructor(public http: HttpClient) { }
 
@@ -38,6 +39,10 @@ export class CommunityDbService {
 
   editCommunity(fd: FormData) {
     return this.http.put(this.url, fd);
+  }
+
+  getAllCommunititesCount() {
+    return this.http.get(this.urlCnt);
   }
 
 }

@@ -14,6 +14,8 @@ import { UpdateCommunityComponent } from './update-community/update-community.co
 
 import { UsersComponent } from './users/users.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 
 import { PostsComponent } from './posts/posts.component';
 import { AddPostComponent } from './add-post/add-post.component';
@@ -24,7 +26,7 @@ import { FeedbacksComponent } from './feedbacks/feedbacks.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DemoComponent } from './demo/demo.component';
-import { UpdateUserComponent } from './update-user/update-user.component';
+
 
 const arr: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -43,6 +45,7 @@ const arr: Routes = [
 
     { path: 'users', component: UsersComponent },
     { path: 'addUser', component: AddUserComponent },
+    { path: 'forgerPass', component: ForgetPassComponent },
 
     { path: 'posts', component: PostsComponent },
     { path: 'addPost', component: AddPostComponent },

@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns = ['check', 'user_id', 'user_name', 'user_pic', 'gender', 'action'];
+  displayedColumns = ['user_id', 'user_name', 'user_pic', 'gender', 'action'];
   dataSource: MatTableDataSource<User_class>;
   selection = new SelectionModel<User_class>(true, []);
 
@@ -57,7 +57,18 @@ export class UsersComponent implements OnInit {
 
   deleteUser(item) {
 
+    this._dataUser.deleteUser(item.user_id).subscribe(
+      (data: any) => {
+        // this.router.navigate(['/users']);
+        this.ngOnInit();
+      },
+      function (err) {
+        alert(err);
+      },
+      function () {
 
+      }
+    );
   }
   updateUser(item) {
     this.router.navigate(['/updateuser', item.user_id]);

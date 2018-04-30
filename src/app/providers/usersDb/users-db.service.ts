@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { email_class } from '../../shared/email_class';
 
 
 @Injectable()
@@ -9,6 +10,8 @@ export class UsersDbService {
   urlsignup: string = 'http://localhost:3000/user/';
   urlUpdate: string = 'https://letsmeetbackend.herokuapp.com/updateUserOnly';
   url: string = 'https://letsmeetbackend.herokuapp.com/login';
+  urlPass: string = 'http://localhost:3000/demomail';
+  urlCnt: string = 'http://letsmeetbackend.herokuapp.com/ucount/';
 
   account: { user_id: string, user_pass: string, token: string } = {
     user_id: '',
@@ -48,5 +51,22 @@ export class UsersDbService {
     // tslint:disable-next-line:prefer-const
     let body = JSON.stringify(item);
     return this.http.put(this.urlUpdate, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
+  sendMail(demo: email_class) {
+    // tslint:disable-next-line:prefer-const
+    let body = JSON.stringify(demo);
+    console.log(demo.name);
+    console.log(demo.message);
+    console.log(demo.subject);
+    return this.http.post(this.urlPass, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
+  deleteUser(id) {
+    return this.http.delete(this.urluser + id, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
+  getAllUsersCount() {
+    return this.http.get(this.urlCnt);
   }
 }

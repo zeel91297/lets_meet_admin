@@ -14,6 +14,7 @@ export class EventsDbService {
   url4: string = 'https://letsmeetbackend.herokuapp.com/updateEventOnly/';
   url5: string = 'https://letsmeetbackend.herokuapp.com/deleAllEvent/';
   url6: string = 'https://letsmeetbackend.herokuapp.com/unApprovedEvent/';
+  urlCnt: string = 'https://letsmeetbackend.herokuapp.com/ecount/';
 
   constructor(public http: HttpClient) { }
 
@@ -24,23 +25,13 @@ export class EventsDbService {
   /*getAllEvents() {
     return this.http.get(this.url1);
   }*/
-
-  /*addEvent(evn: Events_Class) {
-    let body = JSON.stringify(evn);
-    return this.http.post(this.url, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
-  }*/
   addEvent(fd: FormData) {
     return this.http.post(this.url, fd);
   }
 
-  /*editEvent(evn: Events_Class) {
-    // tslint:disable-next-line:prefer-const
-    let body = JSON.stringify(evn);
-    return this.http.put(this.url + evn.event_id, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
-  }*/
 
   editEvent(fd: FormData) {
-    return this.http.put('http://localhost:3000/event', fd);
+    return this.http.put(this.url, fd);
   }
 
   updateEventOnly(event: Event_update_class) {
@@ -83,5 +74,9 @@ export class EventsDbService {
     // tslint:disable-next-line:prefer-const
     let body = JSON.stringify(event);
     return this.http.put(this.url6, body, { headers: new HttpHeaders().set('Content-Type', 'application/json') });
+  }
+
+  getAllEventsCount() {
+    return this.http.get(this.urlCnt);
   }
 }
